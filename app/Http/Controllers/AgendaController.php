@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Agenda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AgendaController extends Controller
 {
   public function index() {
     $agendas = Agenda::with('user')->get();
     return view('agendas.index', compact('agendas'));
+  }
+
+  public function userAgendas(){
+        $userId = Auth::id();
+        $agendas = Agenda::where('user_id', $userId)->with('user')->get();
+        return view('agendas.userIndex', compact('agendas'));
   }
 
   public function create(){

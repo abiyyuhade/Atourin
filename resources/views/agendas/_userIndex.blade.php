@@ -1,5 +1,5 @@
 @extends('layouts.master') @section('title') Timeline @endsection
-@section('page-title') Detail Agenda @endsection @section('body')
+@section('page-title') Timeline @endsection @section('body')
 
 <body>
     @endsection @section('content')
@@ -7,9 +7,12 @@
         <div class="col-xl-12">
             <a href="">
             <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Detail Agenda</h5>
+                </div>
                 <div class="card-body">
                     <form>
-                        <div class="form-floating">
+                        <div class="form-floating mb-3">
                             <input
                                 type="text"
                                 class="form-control"
@@ -17,7 +20,7 @@
                                 placeholder="Enter Name"
                                 disabled
                             />
-                            <label for="floatingnameInput">Judul Agenda sudah ada isi</label>
+                            <label for="floatingnameInput">{{ $agenda->judul }}</label>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -64,12 +67,16 @@
                                     >
                                 </div>
                             </div>
-                            <div>
-                                <button type="submit" class="btn btn-subtle-primary w-md">
-                                  Simpan bookmark
-                                </button>
-                            </div>
-                        </div>             
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-subtle-danger w-md">
+                                Hapus
+                            </button>
+                            <button type="submit" class="btn btn-subtle-warning w-md mx-3">
+                                Ubah
+                            </button>
+                        </div>
+                        
                     </form>
                 </div>
                 <!-- end card body -->
@@ -134,6 +141,12 @@
                                                             </div>
                                                             <div class="btn btn-subtle-primary mt-3 waves-effect waves-light">
                                                               Harga: <b>120.000</b>
+                                                            </div> <br>
+                                                            <div class="btn btn-sm btn-danger mt-3 mx-2 waves-effect waves-light">
+                                                              <i class="fas fa-trash h5 m-2"></i>
+                                                            </div>
+                                                            <div class="btn btn-sm btn-warning mt-3 waves-effect waves-light">
+                                                              <i class="fas fa-pen h5 m-2"></i>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -190,6 +203,12 @@
                                                             </div>
                                                             <div class="btn btn-subtle-primary mt-3 waves-effect waves-light">
                                                               Harga: <b>20.000</b>
+                                                            </div> <br>
+                                                            <div class="btn btn-sm btn-danger mt-3 mx-2 waves-effect waves-light">
+                                                              <i class="fas fa-trash h5 m-2"></i>
+                                                            </div>
+                                                            <div class="btn btn-sm btn-warning mt-3 waves-effect waves-light">
+                                                              <i class="fas fa-pen h5 m-2"></i>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -199,6 +218,15 @@
                                     </div>
                                     <div class="timeline-start">
                                         <p>Selesai</p>
+                                    </div>
+                                    <hr class="mt-5">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div>
+                                            <button class="btn btn-primary waves-effect waves-light mx-3">Tambah Transportasi</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-info waves-effect waves-light">Tambah Destinasi</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

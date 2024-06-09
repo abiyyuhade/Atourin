@@ -19,7 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('agendas', AgendaController::class);
-
+    Route::get('/user/agendas', [AgendaController::class, 'userAgendas'])->name('user.agendas');
+    
     Route::prefix('agendas/{agenda}')->group(function () {
         Route::get('/details', [DetailController::class, 'index'])->name('details.index');
         Route::get('/details/create', [DetailController::class, 'create'])->name('details.create');
