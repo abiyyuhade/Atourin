@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-6 col-xl-6 d-flex gap-3">
             <button type="button" class="btn btn-primary waves-effect waves-light mb-3" onclick="window.location.href='{{ route('agendas.create') }}'">Tambah Agenda</button>
-            <button type="button" class="btn btn-outline-primary waves-effect waves-light mb-3">Kelola Agenda Saya</button>
+            <button type="button" class="btn btn-outline-primary waves-effect waves-light mb-3" onclick="window.location.href='{{ route('user.agendas') }}'">Kelola Agenda Saya</button>
         </div>
     </div>
     <!-- end row -->
@@ -18,7 +18,7 @@
     <div class="row">
         @foreach ($agendas as $agenda)
         <div class="col-lg-6">
-            <a href="">
+            <a href="{{ route('details.index', $agenda->id) }}" style="color: inherit; text-decoration: none;">
                 <div class="card">
                     <div
                         class="card-header bg-transparent d-flex border-bottom text-uppercase py-2 px-3 align-items-center justify-content-between"
@@ -37,10 +37,14 @@
                             Dari: {{ $agenda->lokasi_berangkat }}
                         </p>
                         <h5 class="card-title">Destinasi Tujuan</h5>
-                        <a
-                            href="javascript: void(0);"
-                            class="btn btn-light btn-rounded waves-effect waves-light"
-                            >Baturraden</a>
+                        @foreach($agenda->details as $detail)
+                            @if($detail->kategori === 'destinasi')
+                            <a
+                                href="javascript: void(0);"
+                                class="btn btn-light btn-rounded waves-effect waves-light"
+                                >{{ $detail->judul }}</a>
+                            @endif
+                        @endforeach
                     </div>
                     <div class="card-footer bg-transparent border-top text-muted">
                         500 komentar

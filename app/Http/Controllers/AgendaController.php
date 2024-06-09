@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Auth;
 class AgendaController extends Controller
 {
   public function index() {
-    $agendas = Agenda::with('user')->get();
+    $agendas = Agenda::with(['user', 'details'])->get();
     return view('agendas.index', compact('agendas'));
   }
 
   public function userAgendas(){
         $userId = Auth::id();
-        $agendas = Agenda::where('user_id', $userId)->with('user')->get();
+        $agendas = Agenda::where('user_id', $userId)->with(['user', 'details'])->get();
         return view('agendas.userIndex', compact('agendas'));
   }
 
