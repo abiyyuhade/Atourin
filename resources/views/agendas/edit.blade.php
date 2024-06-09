@@ -1,28 +1,112 @@
-@extends('layouts.app')
+@extends('layouts.master') @section('title') Ubah Agenda @endsection
 
-@section('content')
-    <div class="container">
-        <h1>Edit Agenda</h1>
-        <form action="{{ route('agendas.update', $agenda) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="form-group">
-                <label for="judul">Title</label>
-                <input type="text" class="form-control" id="judul" name="judul" value="{{ $agenda->judul }}">
+@section('page-title') Ubah Agenda @endsection @section('body')
+
+<body>
+    @endsection @section('content')
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Ubah Agenda</h5>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('agendas.update', $agenda) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-floating mb-3">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="judul"
+                                name="judul"
+                                placeholder="Judul"
+                                value="{{ $agenda->judul }}"
+                            />
+                            <label for="judul">Judul Agenda</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="lokasi_berangkat"
+                                        name="lokasi_berangkat"
+                                        placeholder="Lokasi Awal"
+                                        value="{{ $agenda->lokasi_berangkat }}"
+                                    />
+                                    <label for="lokasi_berangkat"
+                                        >Lokasi Berangkat</label
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="mulai"
+                                        name="mulai"
+                                        placeholder="Waktu Berangkat"
+                                        value="{{ $agenda->mulai }}"
+                                    />
+                                    <label for="mulai"
+                                        >Waktu Berangkat</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="selesai"
+                                        name="selesai"
+                                        placeholder="Waktu Selesai"
+                                        value="{{ $agenda->selesai }}"
+                                    />
+                                    <label for="selesai"
+                                        >Waktu Selesai</label
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    id="floatingCheck"
+                                />
+                                <label
+                                    class="form-check-label"
+                                    for="floatingCheck"
+                                >
+                                    Private
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary w-md">
+                                Simpan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!-- end card body -->
             </div>
-            <div class="form-group">
-                <label for="lokasi_berangkat">Departure Location</label>
-                <input type="text" class="form-control" id="lokasi_berangkat" name="lokasi_berangkat" value="{{ $agenda->lokasi_berangkat }}">
-            </div>
-            <div class="form-group">
-                <label for="mulai">Start Date</label>
-                <input type="date" class="form-control" id="mulai" name="mulai" value="{{ $agenda->mulai }}">
-            </div>
-            <div class="form-group">
-                <label for="selesai">End Date</label>
-                <input type="date" class="form-control" id="selesai" name="selesai" value="{{ $agenda->selesai }}">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            <!-- end card -->
+        </div>
+        <!-- end col -->
     </div>
-@endsection
+    <!-- end row -->
+    @endsection @section('scripts')
+    <!-- App js -->
+    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+    @endsection
+</body>
