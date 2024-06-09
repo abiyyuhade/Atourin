@@ -1,8 +1,83 @@
 @extends('layouts.master') @section('title') Timeline @endsection
-@section('page-title') Timeline @endsection @section('body')
+@section('page-title') Detail Agenda @endsection @section('body')
 
 <body>
     @endsection @section('content')
+    <div class="row">
+        <div class="col-xl-12">
+            <a href="">
+            <div class="card">
+                <div class="card-body">
+                    <form>
+                        <div class="form-floating">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="floatingnameInput"
+                                placeholder="Enter Name"
+                                disabled
+                            />
+                            <label for="floatingnameInput">Judul Agenda sudah ada isi</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        id="floatingemailInput"
+                                        placeholder="Enter Email address"
+                                        disabled
+                                    />
+                                    <label for="floatingemailInput"
+                                        >Lokasi Awal sudah diisi</label
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="floatingemailInput"
+                                        placeholder="Enter Email address"
+                                        disabled
+                                    />
+                                    <label for="floatingemailInput"
+                                        >Waktu Berangkat sudah diisi</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input
+                                        type="date"
+                                        class="form-control"
+                                        id="floatingemailInput"
+                                        placeholder="Enter Email address"
+                                        disabled
+                                    />
+                                    <label for="floatingemailInput"
+                                        >Waktu Selesai sudah diisi</label
+                                    >
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-subtle-primary w-md">
+                                  Simpan bookmark
+                                </button>
+                            </div>
+                        </div>             
+                    </form>
+                </div>
+                <!-- end card body -->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col -->
+    </div>
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -12,7 +87,7 @@
                             <div class="timeline">
                                 <div class="timeline-container">
                                     <div class="timeline-end">
-                                        <p>Start</p>
+                                        <p>Mulai</p>
                                     </div>
                                     <div class="timeline-continue">
                                         <div class="row timeline-left">
@@ -21,7 +96,7 @@
                                             >
                                                 <div class="timeline-icon">
                                                     <i
-                                                        class="text-primary h2 mb-0"
+                                                        class="mdi-car-estate text-primary h2 mb-0"
                                                     ></i>
                                                 </div>
                                             </div>
@@ -38,46 +113,27 @@
                                                         <p
                                                             class="mb-0 text-white-50"
                                                         >
-                                                            June
+                                                            Juni
                                                         </p>
                                                     </div>
                                                     <div class="event-content">
+                                                  
                                                         <div
                                                             class="timeline-text"
                                                         >
                                                             <h3
                                                                 class="font-size-17"
                                                             >
-                                                                Timeline Event
-                                                                two
+                                                                Menggunakan travel atourin
                                                             </h3>
-                                                            <p
-                                                                class="mb-0 mt-2 pt-1 text-muted"
-                                                            >
-                                                                At vero eos
-                                                                dignissimos
-                                                                ducimus quos
-                                                                dolores chooses
-                                                                to enjoy
-                                                                pleasure that
-                                                                has no annoying.
-                                                            </p>
-
-                                                            <div
-                                                                class="d-flex flex-wrap align-items-start event-img mt-3 gap-2"
-                                                            >
-                                                                <img
-                                                                    src="{{ URL::asset('build/images/small/img-2.jpg') }}"
-                                                                    alt=""
-                                                                    class="img-fluid rounded"
-                                                                    width="60"
-                                                                />
-                                                                <img
-                                                                    src="{{ URL::asset('build/images/small/img-5.jpg') }}"
-                                                                    alt=""
-                                                                    class="img-fluid rounded"
-                                                                    width="60"
-                                                                />
+                                                            <div class="btn btn-outline-primary">
+                                                              Mulai: <b>08.00</b>
+                                                            </div>
+                                                            <div class="btn btn-outline-primary">
+                                                              Selesai: <b>12.00</b>
+                                                            </div>
+                                                            <div class="btn btn-subtle-primary mt-3 waves-effect waves-light">
+                                                              Harga: <b>120.000</b>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -88,7 +144,7 @@
                                             >
                                                 <div class="timeline-icon">
                                                     <i
-                                                        class="bx bx-user-pin text-primary h2 mb-0"
+                                                        class="fas fa-car-side text-primary h2 mb-0"
                                                     ></i>
                                                 </div>
                                             </div>
@@ -124,27 +180,17 @@
                                                             <h3
                                                                 class="font-size-17"
                                                             >
-                                                                Timeline Event
-                                                                One
+                                                                Baturaden
                                                             </h3>
-                                                            <p
-                                                                class="mb-0 mt-2 pt-1 text-muted"
-                                                            >
-                                                                Perspitis unde
-                                                                omnis it
-                                                                voluptatem
-                                                                accusantium
-                                                                doloremque
-                                                                laudantium,
-                                                                totam rem
-                                                                aperiam, eaque
-                                                                ipsa quae ab
-                                                                illo inventore
-                                                                veritatis et
-                                                                quasi architecto
-                                                                beatae
-                                                                explicabo.
-                                                            </p>
+                                                            <div class="btn btn-outline-primary">
+                                                              Mulai: <b>13.00</b>
+                                                            </div>
+                                                            <div class="btn btn-outline-primary">
+                                                              Selesai: <b>15.00</b>
+                                                            </div>
+                                                            <div class="btn btn-subtle-primary mt-3 waves-effect waves-light">
+                                                              Harga: <b>20.000</b>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -152,20 +198,7 @@
                                         </div>
                                     </div>
                                     <div class="timeline-start">
-                                        <p>End</p>
-                                    </div>
-                                    <div class="timeline-launch">
-                                        <div class="timeline-box">
-                                            <div class="timeline-text">
-                                                <h3 class="font-size-17">
-                                                    Launched our company on 21
-                                                    June 2021
-                                                </h3>
-                                                <p class="text-muted mb-0">
-                                                    Pellentesque sapien ut est.
-                                                </p>
-                                            </div>
-                                        </div>
+                                        <p>Selesai</p>
                                     </div>
                                 </div>
                             </div>
