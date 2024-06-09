@@ -28,9 +28,15 @@
 
                 <li class="menu-title" data-key="t-applications">Applications</li>
                 <li>
-                    <a href="agenda">
+                    <a href="agenda"> <!-- Tambahin Link ke agenda Saya -->
                         <i class="fas fa-calendar-alt icon nav-icon"></i>
                         <span class="menu-item" data-key="t-agenda">Agenda Saya</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="agenda"> <!-- Tambahin Link ke bookmark Saya -->
+                        <i class="far fa-bookmark icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-agenda">Bookmarks</span>
                     </a>
                 </li>
 
