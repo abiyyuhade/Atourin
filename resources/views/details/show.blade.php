@@ -1,22 +1,19 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detail Agenda</title>
+</head>
+<body>
+    <h1>Agenda: {{ $agenda->judul }}</h1>
+    <p>Lokasi Berangkat: {{ $agenda->lokasi_berangkat }}</p>
+    <p>Mulai: {{ $agenda->mulai }}</p>
+    <p>Selesai: {{ $agenda->selesai }}</p>
 
-@section('content')
-    <div class="container">
-        <h1>Detail</h1>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Title: {{ $detail->judul }}</h5>
-                <p class="card-text">Category: {{ $detail->kategori }}</p>
-                <p class="card-text">Cost: {{ $detail->biaya }}</p>
-                <p class="card-text">Start: {{ $detail->mulai }}</p>
-                <p class="card-text">End: {{ $detail->selesai }}</p>
-            </div>
-        </div>
-        <a href="{{ route('details.edit', ['agenda' => $detail->agenda_id, 'detail' => $detail->id]) }}" class="btn btn-primary">Edit</a>
-        <form action="{{ route('details.destroy', ['agenda' => $detail->agenda_id, 'detail' => $detail->id]) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this detail?')">Delete</button>
-        </form>
-    </div>
-@endsection
+    <h2>Detail</h2>
+    <p>Judul: {{ $detail->judul }}</p>
+    <p>Kategori: {{ $detail->kategori }}</p>
+    <p>Biaya: {{ $detail->biaya }}</p>
+    <p>Mulai: {{ $detail->mulai }}</p>
+    <p>Selesai: {{ $detail->selesai }}</p>
+</body>
+</html>
