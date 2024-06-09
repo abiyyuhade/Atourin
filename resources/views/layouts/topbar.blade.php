@@ -200,7 +200,7 @@
                         <h6 class="mb-0">Martin Gurley</h6>
                         <p class="mb-0 font-size-11 text-muted">martin.gurley@email.com</p>
                     </div>
-                    <a class="dropdown-item" href="contacts-profile"><i
+                    <a class="dropdown-item" href="profile"><i
                             class="mdi mdi-account-circle text-muted font-size-16 align-middle me-2"></i> <span
                             class="align-middle">Profile</span></a>
                     <a class="dropdown-item" href="apps-chat"><i
