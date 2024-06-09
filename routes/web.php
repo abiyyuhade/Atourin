@@ -6,7 +6,7 @@ use App\Http\Controllers\DetailController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('');
+    return view('auth-register');
 });
 
 Route::get('/dashboard', function () {
