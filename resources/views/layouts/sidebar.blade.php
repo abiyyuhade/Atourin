@@ -20,15 +20,15 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" data-key="t-menu">Dashboard</li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('agendas.index') }}">
                         <i class="bx bx-home-alt icon nav-icon"></i>
-                        <span class="menu-item" data-key="t-dashboard">Dashboard</span>
+                        <span class="menu-item" data-key="t-dashboard">Home</span>
                     </a>
                 </li>
 
                 <li class="menu-title" data-key="t-applications">Applications</li>
                 <li>
-                    <a href="agenda"> <!-- Tambahin Link ke agenda Saya -->
+                    <a href="{{ route('user.agendas') }}"> <!-- Tambahin Link ke agenda Saya -->
                         <i class="fas fa-calendar-alt icon nav-icon"></i>
                         <span class="menu-item" data-key="t-agenda">Agenda Saya</span>
                     </a>

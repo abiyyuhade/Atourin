@@ -30,7 +30,10 @@ class DetailController extends Controller
 
     public function userDetail(Agenda $agenda, Detail $detail){
         $userId = Auth::id();
-        $details = Detail::where('user_id', $userId)->with(['user', 'agenda'])->get();
+        $details = Detail::where('user_id', $userId)
+                     ->where('agenda_id', $agenda->id)
+                     ->with(['user', 'agenda'])
+                     ->get();
         return view('details.userDetail', compact('agenda', 'details'));
     }
 
