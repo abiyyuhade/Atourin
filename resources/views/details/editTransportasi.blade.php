@@ -9,27 +9,34 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Ubah Destinasi</h5>
+                    <h5 class="card-title mb-0">Ubah Transportasi</h5>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form action="{{ route('details.update', ['agenda' => $agenda->id, 'detail' => $detail->id]) }}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="form-floating mb-3">
                             <input
                                 type="text"
                                 class="form-control"
-                                id="floatingnameInput"
+                                id="judul"
+                                name="judul"
                                 placeholder="Enter Name"
+                                value="{{ $detail->judul }}"
                             />
                             <label for="floatingnameInput">Judul</label>
                         </div>
+                        <input type="hidden" name="kategori" value="{{ $kategori }}">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <input
-                                        type="email"
+                                        type="text"
                                         class="form-control"
-                                        id="floatingemailInput"
+                                        id="biaya"
+                                        name="biaya"
                                         placeholder="Enter Email address"
+                                        value="{{ $detail->biaya }}"
                                     />
                                     <label for="floatingemailInput"
                                         >Biaya</label
@@ -41,10 +48,12 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         class="form-control"
-                                        id="floatingemailInput"
+                                        id="mulai"
+                                        name="mulai"
                                         placeholder="Enter Email address"
+                                        value="{{ $detail->mulai }}"
                                     />
                                     <label for="floatingemailInput"
                                         >Waktu Berangkat</label
@@ -54,10 +63,12 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         class="form-control"
-                                        id="floatingemailInput"
+                                        id="selesai"
+                                        name="selesai"
                                         placeholder="Enter Email address"
+                                        value="{{ $detail->selesai }}"
                                     />
                                     <label for="floatingemailInput"
                                         >Waktu Selesai</label

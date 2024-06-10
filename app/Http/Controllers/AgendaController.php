@@ -14,9 +14,9 @@ class AgendaController extends Controller
   }
 
   public function userAgendas(){
-        $userId = Auth::id();
-        $agendas = Agenda::where('user_id', $userId)->with(['user', 'details'])->get();
-        return view('agendas.userIndex', compact('agendas'));
+    $userId = Auth::id();
+    $agendas = Agenda::where('user_id', $userId)->with(['user', 'details'])->get();
+    return view('agendas.userIndex', compact('agendas'));
   }
 
   public function create(){
@@ -57,6 +57,6 @@ class AgendaController extends Controller
 
   public function destroy(Agenda $agenda){
     $agenda->delete();
-    return redirect()->route('agendas.index');
-  }
+    return redirect()->route('agendas.index')->with('success', 'Agenda deleted successfully.');
+}
 }

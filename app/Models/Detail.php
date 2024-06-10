@@ -19,6 +19,10 @@ class Detail extends Model
         'agenda_id',
     ];
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function agenda(){
         return $this->belongsTo(Agenda::class);
     }

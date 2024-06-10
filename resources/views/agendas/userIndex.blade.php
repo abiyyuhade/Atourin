@@ -17,7 +17,7 @@
     <div class="row">
         @foreach ($agendas as $agenda)
             <div class="col-lg-6">
-                <a href="{{ route('details.index', $agenda->id) }}" style="color: inherit; text-decoration: none;">
+                <a href="{{ route('details.userDetail', $agenda->id) }}" style="color: inherit; text-decoration: none;">
                     <div class="card">
                         <div
                             class="card-header bg-transparent d-flex border-bottom text-uppercase py-2 px-3 align-items-center justify-content-between"

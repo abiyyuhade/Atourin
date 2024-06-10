@@ -9,26 +9,30 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Ubah Transportasi</h5>
+                    <h5 class="card-title mb-0">Tambah Transportasi</h5>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form action="{{ route('details.store', $agenda) }}" method="POST">
+                        @csrf
                         <div class="form-floating mb-3">
                             <input
                                 type="text"
                                 class="form-control"
-                                id="floatingnameInput"
+                                id="judul"
+                                name="judul"
                                 placeholder="Enter Name"
                             />
                             <label for="floatingnameInput">Judul</label>
                         </div>
+                        <input type="hidden" name="kategori" value="{{ $kategori }}">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <input
-                                        type="email"
+                                        type="text"
                                         class="form-control"
-                                        id="floatingemailInput"
+                                        id="biaya"
+                                        name="biaya"
                                         placeholder="Enter Email address"
                                     />
                                     <label for="floatingemailInput"
@@ -41,9 +45,10 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         class="form-control"
-                                        id="floatingemailInput"
+                                        id="mulai"
+                                        name="mulai"
                                         placeholder="Enter Email address"
                                     />
                                     <label for="floatingemailInput"
@@ -54,9 +59,10 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         class="form-control"
-                                        id="floatingemailInput"
+                                        id="selesai"
+                                        name="selesai"
                                         placeholder="Enter Email address"
                                     />
                                     <label for="floatingemailInput"
