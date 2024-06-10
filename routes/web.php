@@ -3,12 +3,13 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('admin');
+    return view('bookmark');
 });
 
 Route::get('/dashboard', function () {
@@ -30,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/admin/{user}', [AdminController::class, 'update'])->name('admin.update');
 
     Route::post('/like/{agenda}', [LikeController::class, 'like'])->name('agendas.like');
+
+    Route::post('/bookmark/{agenda}', [BookmarkController::class, 'bookmark'])->name('agendas.bookmark');
+    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('user.bookmarks');
 
     Route::prefix('agendas/{agenda}')->group(function () {
         Route::get('/details', [DetailController::class, 'index'])->name('details.index');

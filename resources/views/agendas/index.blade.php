@@ -42,8 +42,20 @@
                                 </form>
                             </div>
 
-                            <div  class="btn p-3 btn-subtle-primary waves-effect waves-light">
-                                <i class="far fa-bookmark fa-lg"></i> 
+                            <div>
+                                @php
+                                    $userBookmark = $agenda->bookmarks->where('user_id', Auth::id())->first();
+                                @endphp
+                                <div class="btn p-3 btn-subtle-primary waves-effect waves-light mx-2" onclick="document.getElementById('bookmark-form-{{ $agenda->id }}').submit();">
+                                    @if($userBookmark)
+                                        <i class="fas fa-bookmark fa-lg"></i> <!-- Solid bookmark icon for bookmarked -->
+                                    @else
+                                        <i class="far fa-bookmark fa-lg"></i> <!-- Regular bookmark icon for not bookmarked -->
+                                    @endif
+                                </div>
+                                <form id="bookmark-form-{{ $agenda->id }}" action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
                         </div>
                     </div>

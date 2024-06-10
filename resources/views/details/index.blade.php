@@ -46,9 +46,27 @@ Detail Agenda
                                         </div>
                                     </div>
                                     <div>
-                                        <button type="submit" class="btn btn-subtle-primary w-md">
-                                            Simpan bookmark
-                                        </button>
+                                        @php
+                                            $userBookmark = $agenda->bookmarks->where('user_id', Auth::id())->first();
+                                        @endphp
+                                        <div>
+                                            <button type="button" class="btn w-md @if($userBookmark) btn-danger @else btn-subtle-primary @endif" onclick="document.getElementById('bookmark-form-{{ $agenda->id }}').submit();">
+                                                @if($userBookmark)
+                                                    Hapus Bookmark
+                                                @else
+                                                    Simpan Bookmark
+                                                @endif
+                                            </button>
+                                            <form id="bookmark-form-{{ $agenda->id }}" action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <form id="bookmark-form-{{ $agenda->id }}" action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </div>
                             </form>
