@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="agenda"> <!-- Tambahin Link ke bookmark Saya -->
+                    <a href="{{ route('user.bookmarks') }}"> <!-- Tambahin Link ke bookmark Saya -->
                         <i class="far fa-bookmark icon nav-icon"></i>
                         <span class="menu-item" data-key="t-agenda">Bookmarks</span>
                     </a>

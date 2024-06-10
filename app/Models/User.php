@@ -50,4 +50,14 @@ class User extends Authenticatable
     public function agendas(){
         return $this->hasMany(Agenda::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
 }
