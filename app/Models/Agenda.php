@@ -24,4 +24,9 @@ class Agenda extends Model
     public function details(){
         return $this->hasMany(Detail::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

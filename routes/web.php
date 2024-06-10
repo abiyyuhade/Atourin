@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');
     Route::delete('/admin/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');
     Route::patch('/admin/{user}', [AdminController::class, 'update'])->name('admin.update');
+
+    Route::post('/like/{agenda}', [LikeController::class, 'like'])->name('agendas.like');
 
     Route::prefix('agendas/{agenda}')->group(function () {
         Route::get('/details', [DetailController::class, 'index'])->name('details.index');
