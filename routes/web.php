@@ -7,10 +7,20 @@ use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\LikeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AgendaController::class, 'index'])->name('agendas.index');
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('agendas.index');
+    } else {
+        return redirect()->route('login');
+    }
+});
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/agendas', [AgendaController::class, 'index'])->name('agendas.index');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
