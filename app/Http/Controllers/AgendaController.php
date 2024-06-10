@@ -30,7 +30,6 @@ class AgendaController extends Controller
       'mulai' => 'nullable|date',
       'selesai' => 'nullable|date',
     ]);
-
     $request->user()->agendas()->create($validated);
     return redirect()->route('user.agendas');
   }
@@ -52,7 +51,7 @@ class AgendaController extends Controller
     ]);
 
     $agenda->update($validated);
-    return redirect()->route('agendas.index');
+    return redirect()->route('user.agendas');
   }
 
   public function destroy(Agenda $agenda){
