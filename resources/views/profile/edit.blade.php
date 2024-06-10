@@ -41,7 +41,7 @@
 
                 <div class="p-4 pt-0">
                     <div class="mt-n5 position-relative text-center border-bottom pb-3">
-                        <img src="{{ URL::asset('build/images/users/avatar-3.jpg') }}" alt=""
+                        <img src="{{ URL::asset('build/images/users/avatar-10.jpg') }}" alt=""
                              class="avatar-xl rounded-circle img-thumbnail">
                         <div class="mt-3">
                             <h5 class="mb-1">{{ Auth::user()->name }}</h5> <!-- Menampilkan nama pengguna -->
