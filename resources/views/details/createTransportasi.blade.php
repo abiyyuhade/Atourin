@@ -52,7 +52,7 @@
                                         placeholder="Enter Email address"
                                     />
                                     <label for="floatingemailInput"
-                                        >Waktu Berangkat</label
+                                        >Waktu Mulai</label
                                     >
                                 </div>
                             </div>

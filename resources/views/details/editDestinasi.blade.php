@@ -56,7 +56,7 @@
                                         value="{{ $detail->mulai }}"
                                     />
                                     <label for="floatingemailInput"
-                                        >Waktu Berangkat</label
+                                        >Waktu Mulai</label
                                     >
                                 </div>
                             </div>
