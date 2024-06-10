@@ -4,43 +4,24 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
-<<<<<<< HEAD
-=======
-Route::get('/', function () {
-    return view('bookmark');
-});
-
->>>>>>> origin/luthfi
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [AgendaController::class, 'index'])->name('agendas.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::prefix('admin')->group(function () {
-        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-        Route::get('/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');
-        Route::delete('/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');
-        Route::patch('/{user}', [AdminController::class, 'update'])->name('admin.update');
-    });
-    // Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    // Route::get('/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');
-    // Route::delete('/admin/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');
-    // Route::patch('/admin/{user}', [AdminController::class, 'update'])->name('admin.update');
-
     Route::resource('agendas', AgendaController::class);
     Route::get('/user/agendas', [AgendaController::class, 'userAgendas'])->name('user.agendas');
     Route::delete('/agendas/{agenda}', [AgendaController::class, 'destroy'])->name('agendas.destroy');
 
-<<<<<<< HEAD
-=======
+    Route::post('/agendas/{agenda}/comments', [CommentController::class, 'store'])->name('comments.store');
+
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');
     Route::delete('/admin/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');
@@ -51,7 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/bookmark/{agenda}', [BookmarkController::class, 'bookmark'])->name('agendas.bookmark');
     Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('user.bookmarks');
 
->>>>>>> origin/luthfi
     Route::prefix('agendas/{agenda}')->group(function () {
         Route::get('/details', [DetailController::class, 'index'])->name('details.index');
         Route::get('/userDetail', [DetailController::class, 'userDetail'])->name('details.userDetail');

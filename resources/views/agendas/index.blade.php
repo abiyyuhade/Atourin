@@ -78,7 +78,7 @@
                     <div class="card-footer bg-transparent border-top text-muted d-flex justify-content-between gap-4 py-2 px-3">
                         <div class="d-flex gap-4 mt-2">
                             <p class="mb-0"><span>{{ $agenda->likes->count() }} Suka</span></p>
-                            <p class="mb-0">500 Komentar</p>
+                            <p class="mb-0">{{ $agenda->comments->count() }} Komentar</p>
                         </div>
                         <a href="{{ route('details.index', $agenda->id) }}" style="color: blue; text-decoration: none;" class="btn btn-subtle-primary">
                             Lihat selengkapnya

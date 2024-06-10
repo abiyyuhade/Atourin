@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AgendaController extends Controller
 {
   public function index() {
-    $agendas = Agenda::with(['user', 'details'])->get();
+    $agendas = Agenda::with('comments', 'likes', 'bookmarks', 'details', 'user')->get();
     return view('agendas.index', compact('agendas'));
   }
 
