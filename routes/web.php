@@ -6,10 +6,6 @@ use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\DetailController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('admin');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -19,14 +15,20 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+        Route::delete('/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');
+        Route::patch('/{user}', [AdminController::class, 'update'])->name('admin.update');
+    });
+    // Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    // Route::get('/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+    // Route::delete('/admin/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    // Route::patch('/admin/{user}', [AdminController::class, 'update'])->name('admin.update');
+
     Route::resource('agendas', AgendaController::class);
     Route::get('/user/agendas', [AgendaController::class, 'userAgendas'])->name('user.agendas');
     Route::delete('/agendas/{agenda}', [AgendaController::class, 'destroy'])->name('agendas.destroy');
-
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');
-    Route::delete('/admin/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');
-    Route::patch('/admin/{user}', [AdminController::class, 'update'])->name('admin.update');
 
     Route::prefix('agendas/{agenda}')->group(function () {
         Route::get('/details', [DetailController::class, 'index'])->name('details.index');

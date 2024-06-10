@@ -67,11 +67,11 @@
                         <h6 class="mb-0">{{ Auth::user()->name }}</h6>
                         <p class="mb-0 font-size-11 text-muted">{{ Auth::user()->email }}</p>
                     </div>
-                    <a class="dropdown-item" href="profile"><i
+                    <a class="dropdown-item" href="{{ route('profile.edit') }}"><i
                             class="mdi mdi-account-circle text-muted font-size-16 align-middle me-2"></i> <span
                             class="align-middle">Profile</span></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="javascript:void();"
+                    <a class="dropdown-item" href="{{ route('profile.destroy') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                             class="mdi mdi-logout text-muted font-size-16 align-middle me-2"></i> <span
                             class="align-middle">Logout</span></a>

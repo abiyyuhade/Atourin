@@ -13,6 +13,9 @@ class AdminController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->role !== 'admin') {
+            abort(403, 'Unauthorized action.');
+        }
         $users = User::all();
         return view('admin', compact('users'));
     }

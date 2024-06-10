@@ -3,7 +3,7 @@
 
     <!-- LOGO -->
     <div class="navbar-brand-box">
-        <a href="index" class="logo logo-dark">
+        <a href="{{ route('agendas.index') }}" class="logo logo-dark">
             <h3 class="mt-4">Atourin</h3>
         </a>
     </div>
