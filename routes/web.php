@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\DetailController;
@@ -21,6 +22,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('agendas', AgendaController::class);
     Route::get('/user/agendas', [AgendaController::class, 'userAgendas'])->name('user.agendas');
     Route::delete('/agendas/{agenda}', [AgendaController::class, 'destroy'])->name('agendas.destroy');
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::delete('/admin/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');
+    Route::patch('/admin/{user}', [AdminController::class, 'update'])->name('admin.update');
 
     Route::prefix('agendas/{agenda}')->group(function () {
         Route::get('/details', [DetailController::class, 'index'])->name('details.index');
