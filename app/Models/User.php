@@ -47,8 +47,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function agendas()
-    {
+    public function agendas(){
         return $this->hasMany(Agenda::class);
     }
 }

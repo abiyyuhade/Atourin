@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DetailController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,10 @@ Route::middleware('auth')->group(function () {
         Route::put('/userDetail/{detail}', [DetailController::class, 'update'])->name('details.update');
         Route::delete('/userDetail/{detail}', [DetailController::class, 'destroy'])->name('details.destroy');
     });
+
+    Route::get('/bookmarks', [BookmarkController::class, 'userBookmarks'])->name('bookmarks.index');
+    Route::post('/bookmarks/add/{agenda}', [BookmarkController::class, 'addBookmark'])->name('bookmarks.add');
+    Route::post('/bookmarks/remove/{agenda}', [BookmarkController::class, 'removeBookmark'])->name('bookmarks.remove');
 });
 
 require __DIR__.'/auth.php';

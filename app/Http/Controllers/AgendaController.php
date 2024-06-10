@@ -32,7 +32,7 @@ class AgendaController extends Controller
     ]);
 
     $request->user()->agendas()->create($validated);
-    return redirect()->route('agendas.userAgendas');
+    return redirect()->route('user.agendas');
   }
 
   public function show(Agenda $agenda){
