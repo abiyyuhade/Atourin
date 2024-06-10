@@ -1,8 +1,8 @@
 @extends('layouts.master') @section('title')
-    Timeline
+    Detail Agenda
 @endsection
 @section('page-title')
-    Timeline
+    Detail Agenda
     @endsection @section('body')
 
     <body>
@@ -24,7 +24,7 @@
                                     <div class="form-floating mb-3">
                                         <input type="email" class="form-control" id="floatingemailInput"
                                             placeholder="Enter Email address" disabled />
-                                        <label for="floatingemailInput">{{ $agenda->lokasi_berangkat }}</label>
+                                        <label for="floatingemailInput">Dari: {{ $agenda->lokasi_berangkat }}</label>
                                     </div>
                                 </div>
                             </div>
@@ -33,26 +33,26 @@
                                     <div class="form-floating mb-3">
                                         <input type="date" class="form-control" id="floatingemailInput"
                                             placeholder="Enter Email address" disabled value="{{ $agenda->mulai }}" />
-                                        <label for="floatingemailInput">Waktu Berangkat</label>
+                                        <label for="floatingemailInput">Waktu mulai:</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3">
                                         <input type="date" class="form-control" id="floatingemailInput"
                                             placeholder="Enter Email address" disabled value="{{ $agenda->selesai }}" />
-                                        <label for="floatingemailInput">Waktu Selesai</label>
+                                        <label for="floatingemailInput">Waktu Selesai:</label>
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div class="d-flex">
                                 <form action="{{ route('agendas.destroy', ['agenda' => $agenda->id]) }}" method="POST"
                                     onsubmit="return confirm('Are you sure you want to delete this agenda?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-subtle-danger w-md">Hapus</button>
+                                    <button type="submit" class="btn btn-danger w-md">Hapus</button>
                                 </form>
                                 <a href="{{ route('agendas.edit', $agenda->id) }}">
-                                    <button type="button" class="btn btn-subtle-warning w-md mx-3">
+                                    <button type="button" class="btn btn-warning w-md mx-3">
                                         Ubah
                                     </button>
                                 </a>
@@ -109,26 +109,28 @@
                                                                         </div><br>
                                                                         <div
                                                                             class="btn btn-subtle-primary mt-3 waves-effect waves-light">
-                                                                            Harga: <b>{{ $detail->biaya }}</b>
+                                                                            Biaya: <b>{{ $detail->biaya }}</b>
                                                                         </div> <br>
-                                                                        <form
-                                                                            action="{{ route('details.destroy', ['agenda' => $agenda->id, 'detail' => $detail->id]) }}"
-                                                                            method="POST"
-                                                                            onsubmit="return confirm('Are you sure you want to delete this detail?')">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button
-                                                                                class="btn btn-sm btn-danger mt-3 mx-2 waves-effect waves-light">
-                                                                                <i class="fas fa-trash h5 m-2"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                        <a
-                                                                            href="{{ route('details.editTransportasi', ['agenda' => $agenda->id, 'detail' => $detail->id]) }}">
-                                                                            <button
-                                                                                class="btn btn-sm btn-warning mt-3 waves-effect waves-light">
-                                                                                <i class="fas fa-pen h5 m-2"></i>
-                                                                            </button>
-                                                                        </a>
+                                                                        <div class="d-flex justify-content-end">
+                                                                            <form
+                                                                                action="{{ route('details.destroy', ['agenda' => $agenda->id, 'detail' => $detail->id]) }}"
+                                                                                method="POST"
+                                                                                onsubmit="return confirm('Are you sure you want to delete this detail?')">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button
+                                                                                    class="btn btn-sm btn-danger mt-3 mx-2 waves-effect waves-light">
+                                                                                    <i class="fas fa-trash h5 m-2"></i>
+                                                                                </button>
+                                                                            </form>
+                                                                            <a
+                                                                                href="{{ route('details.editTransportasi', ['agenda' => $agenda->id, 'detail' => $detail->id]) }}">
+                                                                                <button
+                                                                                    class="btn btn-sm btn-warning mt-3 waves-effect waves-light">
+                                                                                    <i class="fas fa-pen h5 m-2"></i>
+                                                                                </button>
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -171,26 +173,28 @@
                                                                         </div><br>
                                                                         <div
                                                                             class="btn btn-subtle-primary mt-3 waves-effect waves-light">
-                                                                            Harga: <b>{{ $detail->biaya }}</b>
+                                                                            Biaya: <b>{{ $detail->biaya }}</b>
                                                                         </div> <br>
-                                                                        <form
-                                                                            action="{{ route('details.destroy', ['agenda' => $agenda->id, 'detail' => $detail->id]) }}"
-                                                                            method="POST"
-                                                                            onsubmit="return confirm('Are you sure you want to delete this detail?')">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button
-                                                                                class="btn btn-sm btn-danger mt-3 mx-2 waves-effect waves-light">
-                                                                                <i class="fas fa-trash h5 m-2"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                        <a
-                                                                            href="{{ route('details.editDestinasi', ['agenda' => $agenda->id, 'detail' => $detail->id]) }}">
-                                                                            <button
-                                                                                class="btn btn-sm btn-warning mt-3 waves-effect waves-light">
-                                                                                <i class="fas fa-pen h5 m-2"></i>
-                                                                            </button>
-                                                                        </a>
+                                                                        <div class="d-flex">
+                                                                            <form
+                                                                                action="{{ route('details.destroy', ['agenda' => $agenda->id, 'detail' => $detail->id]) }}"
+                                                                                method="POST"
+                                                                                onsubmit="return confirm('Are you sure you want to delete this detail?')">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button
+                                                                                    class="btn btn-sm btn-danger mt-3 mx-2 waves-effect waves-light">
+                                                                                    <i class="fas fa-trash h5 m-2"></i>
+                                                                                </button>
+                                                                            </form>
+                                                                            <a
+                                                                                href="{{ route('details.editDestinasi', ['agenda' => $agenda->id, 'detail' => $detail->id]) }}">
+                                                                                <button
+                                                                                    class="btn btn-sm btn-warning mt-3 waves-effect waves-light">
+                                                                                    <i class="fas fa-pen h5 m-2"></i>
+                                                                                </button>
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -1,5 +1,5 @@
 @extends('layouts.master') @section('title')
-    Timeline
+Detail Agenda
 @endsection
 @section('page-title')
     Detail Agenda
@@ -9,21 +9,24 @@
         @endsection @section('content')
         <div class="row">
             <div class="col-xl-12">
-                <a href="">
                     <div class="card">
                         <div class="card-body">
                             <form>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter Name"
-                                        disabled />
-                                    <label for="floatingnameInput">{{ $agenda->judul }}</label>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control" id="floatingemailInput"
+                                                placeholder="Enter Email address" disabled />
+                                            <label for="floatingnameInput">{{ $agenda->judul }}</label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
                                             <input type="email" class="form-control" id="floatingemailInput"
                                                 placeholder="Enter Email address" disabled />
-                                            <label for="floatingemailInput">{{ $agenda->lokasi_berangkat }}</label>
+                                            <label for="floatingemailInput">Dari: {{ $agenda->lokasi_berangkat }}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -32,14 +35,14 @@
                                         <div class="form-floating mb-3">
                                             <input type="date" class="form-control" id="floatingemailInput"
                                                 placeholder="Enter Email address" disabled value="{{ $agenda->mulai }}" />
-                                            <label for="floatingemailInput">Waktu Berangkat sudah diisi</label>
+                                            <label for="floatingemailInput">Waktu Berangkat: </label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
                                             <input type="date" class="form-control" id="floatingemailInput"
                                                 placeholder="Enter Email address" disabled value="{{ $agenda->selesai }}" />
-                                            <label for="floatingemailInput">Waktu Selesai sudah diisi</label>
+                                            <label for="floatingemailInput">Waktu Selesai:</label>
                                         </div>
                                     </div>
                                     <div>
@@ -156,6 +159,76 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="">
+                            <h5 class="font-size-14 mb-3">Komentar : </h5>
+
+                            <div class="border py-3 rounded">
+
+                                <div class="px-4" data-simplebar style="max-height: 360px;">
+
+                                <!-- ITERASI KOMENTAR -->
+                                    <div class="border-bottom pb-3 pt-3">
+                                        <p class="float-sm-end text-muted font-size-13">12 July, 2021</p>
+                                        <div class="d-flex align-items-start">
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex">
+                                                    <img src="{{ URL::asset('build/images/users/avatar-2.jpg') }}"
+                                                        class="avatar-sm rounded-circle" alt="">
+                                                    <div class="flex-1 mt-2 ps-3">
+                                                        <h5 class="font-size-16 mb-0">Samuel</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted my-3">Maecenas non vestibulum ante, nec efficitur
+                                            orci. Duis eu ornare mi, quis bibendum quam. Etiam imperdiet aliquam
+                                            purus sit amet rhoncus. Vestibulum pretium consectetur leo, in mattis
+                                            ipsum sollicitudin eget. Pellentesque vel mi tortor.
+                                            Nullam vitae maximus dui dolor sit amet, consectetur adipiscing elit.
+                                        </p>
+
+                                    </div>
+                                <!-- ITERASI KOMENTAR SELESAI --> 
+                                   
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="px-4 mt-2">
+                            <div class="border rounded mt-4">
+                                <form action="#">
+                                    <div class="px-2 py-1 bg-light">
+                                        <div class="btn-group" role="group">
+                                            <button type="button"
+                                                class="btn btn-sm btn-link text-body text-decoration-none"><i
+                                                    class="bx bx-link"></i></button>
+                                            <button type="button"
+                                                class="btn btn-sm btn-link text-body text-decoration-none"><i
+                                                    class="bx bx-smile"></i></button>
+                                            <button type="button"
+                                                class="btn btn-sm btn-link text-body text-decoration-none"><i
+                                                    class="bx bx-at"></i></button>
+                                        </div>
+                                    </div>
+                                    <textarea rows="7" class="form-control border-0 resize-none" placeholder="Komentar anda..."></textarea>
+                                </form>
+                            </div>
+
+                            <div class="text-end mt-3">
+                                <button type="button" class="btn btn-success w-sm text-truncate ms-2">
+                                    Kirim <i class="bx bx-send ms-2 align-middle"></i></button>
                             </div>
                         </div>
                     </div>

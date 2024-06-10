@@ -26,8 +26,13 @@
                         <div>
                             <p class="mb-0">Oleh: {{ $agenda->user->name }}, pada: {{ $agenda->created_at->format('d M Y') }}</p>
                         </div>
-                        <div  class="btn p-3 btn-subtle-primary waves-effect waves-light">
-                            <i class="far fa-bookmark fa-lg"></i> 
+                        <div>
+                            <div  class="btn p-3 btn-subtle-danger waves-effect waves-light mx-2">
+                                <i class="far far fa-heart fa-lg"></i> 
+                            </div>
+                            <div  class="btn p-3 btn-subtle-primary waves-effect waves-light">
+                                <i class="far fa-bookmark fa-lg"></i> 
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -46,8 +51,9 @@
                             @endif
                         @endforeach
                     </div>
-                    <div class="card-footer bg-transparent border-top text-muted">
-                        500 komentar
+                    <div class="card-footer bg-transparent border-top text-muted d-flex gap-4">
+                        <p class="mb-0">500 Komentar</p>
+                        <p class="mb-0">1000 Suka</p>
                     </div>
                     
                 </div>
