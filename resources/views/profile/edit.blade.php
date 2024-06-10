@@ -53,24 +53,16 @@
                         <table class="table align-middle table-sm table-nowrap table-borderless table-centered mb-0">
                             <tbody>
                             <tr>
-                                <th class="fw-bold">City :</th>
-                                <td class="text-muted">New York City</td>
+                                <th class="fw-bold">Jenis Kelamin :</th>
+                                <td class="text-muted">{{ Auth::user()->jk }}</td> <!-- Menampilkan jenis kelamin pengguna -->
                             </tr>
                             <tr>
-                                <th class="fw-bold">State :</th>
-                                <td class="text-muted">New York</td>
+                                <th class="fw-bold">Tanggal Lahir :</th>
+                                <td class="text-muted">{{ Auth::user()->tgl_lahir }}</td> <!-- Menampilkan tanggal lahir pengguna -->
                             </tr>
                             <tr>
-                                <th class="fw-bold">Country :</th>
-                                <td class="text-muted">USA</td>
-                            </tr>
-                            <tr>
-                                <th class="fw-bold">Pin Code :</th>
-                                <td class="text-muted">0005485</td>
-                            </tr>
-                            <tr>
-                                <th class="fw-bold">Phone :</th>
-                                <td class="text-muted">+214 5632564</td>
+                                <th class="fw-bold">Alamat :</th>
+                                <td class="text-muted">{{ Auth::user()->alamat }}</td> <!-- Menampilkan alamat pengguna -->
                             </tr>
                             </tbody>
                         </table>
@@ -84,7 +76,6 @@
     <div class="col-xxl-9">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-3">Update Profile</h4>
                 <!-- Include the Breeze profile update form -->
                 @include('profile.partials.update-profile-information-form')
             </div>

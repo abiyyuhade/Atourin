@@ -1,10 +1,10 @@
 <section>
     <header>
         <h4 class="card-title mb-3 text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+            {{ __('Informasi Profil') }}
         </h4>
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Perbarui informasi profil pribadi anda.") }}
         </p>
     </header>
 
@@ -49,6 +49,35 @@
             @endif
         </div>
 
+        <div class="mb-3">
+            <label for="tgl_lahir" class="form-label">{{ __('Tanggal Lahir') }}</label>
+            <input id="tgl_lahir" name="tgl_lahir" type="date" class="form-control mt-1 block w-full" value="{{ old('tgl_lahir', $user->tgl_lahir) }}">
+            @error('tgl_lahir')
+                <span class="text-danger mt-2">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="alamat" class="form-label">{{ __('Alamat') }}</label>
+            <textarea id="alamat" name="alamat" class="form-control mt-1 block w-full">{{ old('alamat', $user->alamat) }}</textarea>
+            @error('alamat')
+                <span class="text-danger mt-2">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="jk" class="form-label">{{ __('Jenis Kelamin') }}</label>
+            <select id="jk" name="jk" class="form-control mt-1 block w-full">
+                <option value="">{{ __('Pilih Jenis Kelamin') }}</option>
+                <option value="laki" {{ old('jk', $user->jk) == 'laki' ? 'selected' : '' }}>{{ __('Laki-laki') }}</option>
+                <option value="perempuan" {{ old('jk', $user->jk) == 'perempuan' ? 'selected' : '' }}>{{ __('Perempuan') }}</option>
+            </select>
+            @error('jk')
+                <span class="text-danger mt-2">{{ $message }}</span>
+            @enderror
+        </div>
+
+
         <div class="d-flex justify-content-end gap-4">
 
             @if (session('status') === 'profile-updated')
@@ -58,9 +87,9 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 200)"
                     class="badge bg-success-subtle text-success font-size-12"
-                >{{ __('Saved.') }}</p>
+                >{{ __('Tersimpan') }}</p>
             @endif
-            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+            <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
         </div>
     </form>
 </section>

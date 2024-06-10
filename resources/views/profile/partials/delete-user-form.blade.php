@@ -1,11 +1,11 @@
 <section class="space-y-6">
     <header>
         <h4 class="card-title mb-3 text-lg font-medium text-gray-900">
-            {{ __('Delete Account') }}
+            {{ __('Hapus Akun') }}
         </h4>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
+            {{ __('Setelah akun Anda dihapus, semua sumber daya dan datanya akan dihapus secara permanen. Sebelum menghapus akun Anda, harap unduh data atau informasi apa pun yang ingin Anda simpan.') }}
         </p>
     </header>
 
@@ -13,7 +13,7 @@
         class="btn btn-danger"
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</button>
+    >{{ __('Hapus Akun') }}</button>
 
     <div x-data="{ show: {{ $errors->userDeletion->isNotEmpty() ? 'true' : 'false' }} }" x-show="show" class="modal">
         <div class="modal-dialog" role="document">
@@ -50,7 +50,7 @@
                         {{ __('Cancel') }}
                     </button>
 
-                    <button type="submit" class="btn btn-danger">{{ __('Delete Account') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ __('Hapus Akun') }}</button>
                 </div>
             </form>
         </div>

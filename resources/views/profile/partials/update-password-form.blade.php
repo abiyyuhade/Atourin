@@ -1,10 +1,10 @@
 <section>
     <header>
         <h4 class="card-title mb-3 text-lg font-medium text-gray-900">
-            {{ __('Update Password') }}
+            {{ __('Perbarui Kata Sandi') }}
         </h4>
         <p class="mt-1 text-sm text-gray-600">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
+            {{ __('Pastikan akun Anda menggunakan kata sandi yang panjang dan acak agar tetap aman.') }}
         </p>
     </header>
 
@@ -13,7 +13,7 @@
         @method('put')
 
         <div class="mb-3">
-            <label for="update_password_current_password" class="form-label">{{ __('Current Password') }}</label>
+            <label for="update_password_current_password" class="form-label">{{ __('Kata sandi saat ini') }}</label>
             <input id="update_password_current_password" name="current_password" type="password" class="form-control mt-1 block w-full" autocomplete="current-password">
             @error('current_password')
                 <span class="text-danger mt-2">{{ $message }}</span>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="update_password_password" class="form-label">{{ __('New Password') }}</label>
+            <label for="update_password_password" class="form-label">{{ __('Kata sandi baru') }}</label>
             <input id="update_password_password" name="password" type="password" class="form-control mt-1 block w-full" autocomplete="new-password">
             @error('password')
                 <span class="text-danger mt-2">{{ $message }}</span>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="update_password_password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
+            <label for="update_password_password_confirmation" class="form-label">{{ __('Konfirmasi kata sandi') }}</label>
             <input id="update_password_password_confirmation" name="password_confirmation" type="password" class="form-control mt-1 block w-full" autocomplete="new-password">
             @error('password_confirmation')
                 <span class="text-danger mt-2">{{ $message }}</span>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="d-flex justify-content-end gap-4">
-            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+            <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
 
             @if (session('status') === 'password-updated')
                 <p
