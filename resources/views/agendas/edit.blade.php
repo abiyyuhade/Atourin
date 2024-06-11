@@ -77,15 +77,19 @@
                         </div>
 
                         <div class="mb-3">
+                            <input type="hidden" name="private" value="0">
                             <div class="form-check">
                                 <input
                                     class="form-check-input"
                                     type="checkbox"
-                                    id="floatingCheck"
+                                    id="private"
+                                    name="private"
+                                    value="1"
+                                    {{ $agenda->private ? 'checked' : '' }}
                                 />
                                 <label
                                     class="form-check-label"
-                                    for="floatingCheck"
+                                    for="private"
                                 >
                                     Private
                                 </label>

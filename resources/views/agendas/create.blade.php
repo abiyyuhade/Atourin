@@ -76,7 +76,9 @@
                                 <input
                                     class="form-check-input"
                                     type="checkbox"
-                                    id="floatingCheck"
+                                    id="private"
+                                    name="private"
+                                    value="1"
                                 />
                                 <label
                                     class="form-check-label"

@@ -13,7 +13,8 @@ class Agenda extends Model
         'judul',
         'lokasi_berangkat',
         'mulai',
-        'selesai', 
+        'selesai',
+        'private', 
         'user_id'
     ];
 
