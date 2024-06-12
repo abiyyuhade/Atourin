@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master-admin')
 @section('title')
     Admin
 @endsection
@@ -26,8 +26,33 @@
                     </div>
                     <!-- end card header -->
                     <div class="card-body">
+                        <div id="table-gridjs"></div>
                         @foreach ($users as $user)
-                            <div id="table-gridjs"></div>
+                            <!-- Delete Confirmation Modal -->
+                            <div class="modal fade" id="deleteModal-{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-{{ $user->id }}"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel-{{ $user->id }}">Konfirmasi Hapus</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Apakan anda yakin menghapus pengguna {{ $user->email }}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <form class="" action="{{ route('admin.destroy', ['user' => $user->id]) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger waves-effect waves-light">Hapus</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
                     </div>
                     <!-- end card body -->
@@ -38,31 +63,6 @@
         </div>
         <!-- end row -->
 
-        <!-- Delete Confirmation Modal -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form id="deleteForm" method="POST" action="">
-                    @csrf
-                    @method('DELETE')
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to delete this user?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
     @endsection
     @section('scripts')
         <!-- gridjs js -->
@@ -85,10 +85,10 @@
                 user.alamat,
                 gridjs.html(`
                 <div class="btn-group gap-2" role="group">
-                    <a href="admin/${user.id}/edit"><button type="button" class="btn btn-primary btn-sm edit-button">
+                    <a href="{{ route('admin.edit', $user->id) }}"><button type="button" class="btn btn-primary btn-sm edit-button">
                         <i class="fas fa-edit"></i>
                     </button></a>
-                    <button type="button" class="btn btn-danger btn-sm delete-button" data-id="${user.id}" data-toggle="modal" data-target="#deleteModal">
+                    <button type="button" class="btn btn-danger btn-sm delete-button" data-toggle="modal" data-target="#deleteModal-${user.id}">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
@@ -96,8 +96,8 @@
             ]);
 
             new gridjs.Grid({
-                columns: ["Name", "Email", "Role", "Gender", "Birth Date", "Address", {
-                    name: 'Actions',
+                columns: ["Name", "Email", "Role", "Jenis Kelamin", "Tgl Lahir", "Alamat", {
+                    name: 'Aksi',
                     sort: false,
                     width: '100px'
                 }],
@@ -109,11 +109,5 @@
                 data: gridData
             }).render(document.getElementById("table-gridjs"));
 
-            // Handle delete button click
-            $(document).on('click', '.delete-button', function() {
-                const userId = $(this).data('id');
-                const actionUrl = `admin/${userId}`;
-                $('#deleteForm').attr('action', actionUrl);
-            });
         </script>
     @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Agenda;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,12 +18,12 @@ class AdminController extends Controller
             abort(403, 'Unauthorized action.');
         }
         $users = User::all();
-        return view('admin', compact('users'));
+        return view('admin.user', compact('users'));
     }
 
     public function edit(User $user)
     {
-        return view('admin-edit', compact('user'));
+        return view('admin.user-edit', compact('user'));
     }
 
     public function destroy(User $user)
@@ -45,6 +46,13 @@ class AdminController extends Controller
         $user->update($validatedData);
     
         return redirect()->route('admin.index')->with('success', 'User updated successfully');
+    }
+
+    public function agendas() {
+        $agendas = Agenda::where('private', false)
+                            ->with('comments', 'likes', 'bookmarks', 'details', 'user')
+                            ->get();
+        return view('admin.agendas', compact('agendas'));
     }
     
     

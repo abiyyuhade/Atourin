@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');
     Route::delete('/admin/{user}', [AdminController::class, 'destroy'])->name('admin.destroy');
     Route::patch('/admin/{user}', [AdminController::class, 'update'])->name('admin.update');
+    Route::get('/admin/agendas', [AdminController::class, 'agendas'])->name('admin.agendas');
 
     Route::post('/like/{agenda}', [LikeController::class, 'like'])->name('agendas.like');
 

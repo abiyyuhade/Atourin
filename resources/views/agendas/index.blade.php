@@ -25,12 +25,12 @@
                         <div>
                             <p class="mb-0">Oleh: {{ $agenda->user->name }}, pada: {{ $agenda->created_at->format('d M Y') }}</p>
                         </div>
-                        <div class="d-flex">
+                        <div class="d-flex gap-3">
                             <div>
                                 @php
                                     $userLike = $agenda->likes->where('user_id', Auth::id())->first();
                                 @endphp
-                                <div class="btn p-3 btn-subtle-danger waves-effect waves-light mx-2" onclick="document.getElementById('like-form-{{ $agenda->id }}').submit();">
+                                <div class="btn p-3 btn-subtle-danger waves-effect waves-light" onclick="document.getElementById('like-form-{{ $agenda->id }}').submit();">
                                     @if($userLike)
                                         <i class="fas fa-heart fa-lg"></i> <!-- Solid heart icon for liked -->
                                     @else
@@ -46,7 +46,7 @@
                                 @php
                                     $userBookmark = $agenda->bookmarks->where('user_id', Auth::id())->first();
                                 @endphp
-                                <div class="btn p-3 btn-subtle-primary waves-effect waves-light mx-2" onclick="document.getElementById('bookmark-form-{{ $agenda->id }}').submit();">
+                                <div class="btn p-3 btn-subtle-primary waves-effect waves-light" onclick="document.getElementById('bookmark-form-{{ $agenda->id }}').submit();">
                                     @if($userBookmark)
                                         <i class="fas fa-bookmark fa-lg"></i> <!-- Solid bookmark icon for bookmarked -->
                                     @else
