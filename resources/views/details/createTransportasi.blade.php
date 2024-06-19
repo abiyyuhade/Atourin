@@ -21,6 +21,7 @@
                                 id="judul"
                                 name="judul"
                                 placeholder="Enter Name"
+                                required
                             />
                             <label for="floatingnameInput">Judul</label>
                         </div>
@@ -31,7 +32,7 @@
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="biaya"
+                                        id="regexp-mask"
                                         name="biaya"
                                         placeholder="Enter Email address"
                                     />
@@ -88,5 +89,9 @@
     @endsection @section('scripts')
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
+    <!-- form mask -->
+    <script src="{{ URL::asset('build/libs/imask/imask.min.js') }}"></script>
+    <!-- form mask init -->
+    <script src="{{ URL::asset('build/js/pages/form-mask.init.js') }}"></script>
     @endsection
 </body>

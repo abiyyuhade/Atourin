@@ -29,7 +29,7 @@ class AdminController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index')->with('success', 'Berhasil menghapus pengguna');
     }
     public function update(Request $request, User $user): RedirectResponse
     {
@@ -45,7 +45,7 @@ class AdminController extends Controller
     
         $user->update($validatedData);
     
-        return redirect()->route('admin.index')->with('success', 'User updated successfully');
+        return redirect()->route('admin.index')->with('success', 'Berhasil mengubah pengguna');
     }
 
     public function agendas() {
@@ -54,6 +54,10 @@ class AdminController extends Controller
                             ->get();
         return view('admin.agendas', compact('agendas'));
     }
-    
+    public function agendaDestroy(Agenda $agenda)
+    {
+        $agenda->delete();
+        return redirect()->route('admin.agendas')->with('success', 'Berhasil menghapus agenda');
+    }
     
 }

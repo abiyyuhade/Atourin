@@ -1,5 +1,5 @@
-@extends('layouts.master') @section('title') Agenda @endsection
-@section('page-title') Home @endsection @section('body')
+@extends('layouts.master') @section('title') Beranda @endsection
+@section('page-title') Beranda @endsection @section('body')
 
 <body>
     @endsection @section('content')

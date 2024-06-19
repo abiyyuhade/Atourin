@@ -33,6 +33,6 @@ class BookmarkController extends Controller
             ]);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Berhasil tambah/hapus markah');
     }
 }

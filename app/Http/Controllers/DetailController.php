@@ -50,7 +50,7 @@ class DetailController extends Controller
         $validatedData['agenda_id'] = $agenda->id;
     
         $detail = Detail::create($validatedData);
-        return redirect()->route('details.userDetail', ['agenda' => $agenda->id, 'detail' => $detail->id])->with('success', 'Detail added successfully.');
+        return redirect()->route('details.userDetail', ['agenda' => $agenda->id, 'detail' => $detail->id])->with('success', 'Berhasil menambahkan detail');
     }
 
     public function show(Agenda $agenda, Detail $detail){
@@ -84,16 +84,16 @@ class DetailController extends Controller
         $validatedData['agenda_id'] = $agenda->id;
     
         $detail->update($validatedData);
-        return redirect()->route('details.userDetail', ['agenda' => $agenda->id, 'detail' => $detail->id])->with('success', 'Detail updated successfully.');
+        return redirect()->route('details.userDetail', ['agenda' => $agenda->id, 'detail' => $detail->id])->with('success', 'Berhasil mengubah detail');
     }
 
     public function destroy(Agenda $agenda, Detail $detail){
         $detail->delete();
-        return redirect()->route('details.userDetail', ['agenda' => $agenda->id])->with('success', 'Detail deleted successfully.');
+        return redirect()->route('details.userDetail', ['agenda' => $agenda->id])->with('success', 'Berhasil menghapus detail');
     }
 
     public function destroyAgenda(Agenda $agenda){
         $agenda->delete();
-        return redirect()->route('details.userDetails')->with('success', 'Agenda deleted successfully.');
+        return redirect()->route('details.userDetails')->with('success', 'Berhasil menghapus agenda');
     }
 }

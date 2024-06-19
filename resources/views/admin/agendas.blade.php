@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <form action="{{ route('agendas.destroy', ['agenda' => $agenda->id]) }}" method="POST">
+                                            <form action="{{ route('admin.agendaDestroy', ['agenda' => $agenda->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger waves-effect waves-light">Hapus</button>

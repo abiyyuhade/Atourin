@@ -31,9 +31,10 @@
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="biaya"
+                                        id="regexp-mask"
                                         name="biaya"
                                         placeholder="Enter Email address"
+                                        required
                                     />
                                     <label for="floatingemailInput"
                                         >Biaya</label

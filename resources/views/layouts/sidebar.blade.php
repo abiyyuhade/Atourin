@@ -22,7 +22,7 @@
                 <li>
                     <a href="{{ route('agendas.index') }}">
                         <i class="bx bx-home-alt icon nav-icon"></i>
-                        <span class="menu-item" data-key="t-dashboard">Home</span>
+                        <span class="menu-item" data-key="t-dashboard">Beranda</span>
                     </a>
                 </li>
 

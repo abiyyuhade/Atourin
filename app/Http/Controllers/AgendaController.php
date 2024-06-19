@@ -37,7 +37,7 @@ class AgendaController extends Controller
     ]);
     $validated['private'] = $request->has('private');
     $request->user()->agendas()->create($validated);
-    return redirect()->route('user.agendas');
+    return redirect()->route('user.agendas')->with('success', 'Agenda berhasil dibuat');
   }
 
   public function show(Agenda $agenda){
@@ -68,11 +68,11 @@ class AgendaController extends Controller
       $agenda->private = false;
     }
     $agenda->update($validated);
-    return redirect()->route('user.agendas');
+    return redirect()->route('user.agendas')->with('success', 'Agenda berhasil diubah');
   }
 
   public function destroy(Agenda $agenda){
     $agenda->delete();
-    return redirect()->back()->with('success', 'Agenda deleted successfully.');
+    return redirect()->route('user.agendas')->with('success', 'Agenda berhasil dihapus');
   }
 }

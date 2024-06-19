@@ -19,6 +19,6 @@ class CommentController extends Controller
 
         Comment::create($validated);
 
-        return redirect()->route('details.index', $agenda->id)->with('success', 'Comment added successfully.');
+        return redirect()->route('details.index', $agenda->id)->with('success', 'Berhasil menambah komentar');
     }
 }
