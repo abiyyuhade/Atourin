@@ -76,7 +76,8 @@
         <script>
             const users = @json($users);
 
-            const gridData = users.map(user => [
+            const gridData = users.map((user, index) => [
+                index + 1, // Add this line to include the number
                 user.name,
                 user.email,
                 user.role,
@@ -84,19 +85,19 @@
                 user.tgl_lahir,
                 user.alamat,
                 gridjs.html(`
-                <div class="gap-2" role="group">
-                    <a href="{{ route('admin.edit', $user->id) }}"><button type="button" class="btn btn-warning btn-sm edit-button">
-                        <i class="fas fa-edit"></i>
-                    </button></a>
-                    <button type="button" class="btn btn-danger btn-sm delete-button" data-toggle="modal" data-target="#deleteModal-${user.id}">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </div>
-            `)
+                    <div class="gap-2" role="group">
+                        <a href="{{ route('admin.edit', $user->id) }}"><button type="button" class="btn btn-warning btn-sm edit-button">
+                            <i class="fas fa-edit"></i>
+                        </button></a>
+                        <button type="button" class="btn btn-danger btn-sm delete-button" data-toggle="modal" data-target="#deleteModal-${user.id}">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                `)
             ]);
 
             new gridjs.Grid({
-                columns: ["Name", "Email", "Role", "Jenis Kelamin", "Tgl Lahir", "Alamat", {
+                columns: ["Nomor", "Name", "Email", "Role", "Jenis Kelamin", "Tgl Lahir", "Alamat", {
                     name: 'Aksi',
                     sort: false,
                     width: '100px'
@@ -108,6 +109,6 @@
                 search: true,
                 data: gridData
             }).render(document.getElementById("table-gridjs"));
-
         </script>
+
     @endsection

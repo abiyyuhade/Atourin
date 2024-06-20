@@ -51,6 +51,13 @@
                                 <small class="text-muted">{{ $agenda->created_at->format('d M Y') }}</small>
                             </div>
                         </div>
+                        <div>
+                            @if ($agenda->private)
+                                <span class="btn btn-primary btn-sm text-bg-primary pt-1">Private</span>
+                            @else
+                                <span class="btn btn-success btn-sm text-bg-success pt-1">Publish</span>
+                            @endif
+                        </div>
                         <div class="d-flex gap-3">
                             <button type="button" class="btn btn-subtle-danger waves-effect waves-light p-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
                                 <i class="fas fa-trash fa-lg"></i>

@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/agendas', [AgendaController::class, 'index'])->name('agendas.index');
+    Route::get('/agendas/search', [AgendaController::class, 'search'])->name('agendas.search');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('agendas', AgendaController::class);
     Route::get('/user/agendas', [AgendaController::class, 'userAgendas'])->name('user.agendas');
     Route::delete('/agendas/{agenda}', [AgendaController::class, 'destroy'])->name('agendas.destroy');
+    
 
     Route::post('/agendas/{agenda}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');

@@ -12,11 +12,15 @@
     <!-- end row -->
 
     <div class="row mt-3 mb-2">
-        <h4>Rekomendasi Agenda</h4>
+        @if(isset($searchTerm) && !empty($searchTerm))
+            <h4>Cari "{{ $searchTerm }}"</h4>
+        @else
+            <h4>Rekomendasi Agenda</h4>
+        @endif
     </div>
 
     <div class="row">
-        @foreach ($agendas as $agenda)
+        @forelse ($agendas as $agenda)
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header bg-transparent d-flex border-bottom py-2 px-3 align-items-center justify-content-between">
@@ -43,9 +47,8 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <!-- Title and Location Section -->
                         <div class="mb-4">
-                            <h5 class=" text-primary">{{ $agenda->judul }}</h5>
+                            <h5 class="text-primary">{{ $agenda->judul }}</h5>
                             <p class="card-text">
                                 <i class="fas fa-map-marker-alt me-2 text-danger"></i>
                                 <span class="fw-bold me-3">{{ $agenda->lokasi_berangkat }}</span>
@@ -56,7 +59,6 @@
                             </p>
                         </div>
                         
-                        <!-- Destination Section -->
                         <div>
                             <h6 class="text-secondary">Destinasi:</h6>
                             <div class="d-flex flex-wrap gap-1">
@@ -89,10 +91,16 @@
                         </a>
                     </div>
                 </div>
-
             </div>
-        @endforeach
+        @empty
+            <p class="text-center">Tidak ada agenda yang sesuai dengan pencarian anda</p>
+        @endforelse
     </div>
+    
+    <div class="d-flex justify-content-center">
+        {{ $agendas->links('pagination::bootstrap-5') }}
+    </div>
+
     <!-- end row -->
 
     @endsection @section('scripts')

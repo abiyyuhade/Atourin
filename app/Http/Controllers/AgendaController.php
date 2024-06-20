@@ -12,7 +12,7 @@ class AgendaController extends Controller
   public function index() {
     $agendas = Agenda::where('private', false)
                         ->with('comments', 'likes', 'bookmarks', 'details', 'user')
-                        ->get();
+                        ->paginate(20);
     $this->componentAgendas($agendas);
     return view('agendas.index', compact('agendas'));
   }
@@ -96,5 +96,20 @@ class AgendaController extends Controller
   public function destroy(Agenda $agenda){
     $agenda->delete();
     return redirect()->route('user.agendas')->with('success', 'Agenda berhasil dihapus');
+  }
+
+  public function search(Request $request)
+  {
+      $searchTerm = $request->input('search');
+      $agendas = Agenda::where('judul', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('lokasi_berangkat', 'LIKE', "%{$searchTerm}%")
+                  ->orWhereHas('user', function($q) use ($searchTerm) {
+                    $q->where('name', 'LIKE', "%{$searchTerm}%");
+                  })
+                  ->orWhereHas('details', function($q) use ($searchTerm) {
+                    $q->where('judul', 'LIKE', "%{$searchTerm}%")->where('kategori', 'destinasi');
+                  })
+                  ->paginate(20);
+      return view('agendas.index', compact('agendas', 'searchTerm'));
   }
 }

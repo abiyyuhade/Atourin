@@ -23,11 +23,10 @@
                     <i class="bx bx-search icon-sm align-middle"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0">
-                    <form class="p-2">
+                    <form class="p-2" action="{{ route('agendas.search') }}" method="GET">
                         <div class="search-box">
                             <div class="position-relative">
-                                <input type="text" class="form-control rounded bg-light border-0"
-                                    placeholder="Search...">
+                                <input type="text" name="search" class="form-control rounded bg-light border-0" placeholder="Cari agenda...">
                                 <i class="bx bx-search search-icon"></i>
                             </div>
                         </div>
