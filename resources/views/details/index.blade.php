@@ -44,14 +44,25 @@
                                     <label for="floatingemailInput">Waktu Selesai:</label>
                                 </div>
                             </div>
-                            <div>
-                                <form id="bookmark-form-{{ $agenda->id }}" action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST">
+                            <div class="d-flex gap-3">
+                                <form class="mb-0" action="{{ route('agendas.like', $agenda->id) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn w-md @if($agenda->bookmarks->contains('user_id', Auth::id())) btn-danger @else btn-subtle-primary @endif">
-                                        @if($agenda->bookmarks->contains('user_id', Auth::id()))
-                                            Hapus Bookmark
+                                    <button type="submit" class="btn btn-subtle-danger waves-effect waves-light me-2 d-flex align-items-center justify-content-center">
+                                        @if($agenda->likes->contains('user_id', Auth::id()))
+                                            <i class="fas fa-heart fa-lg me-2"></i>
                                         @else
-                                            Simpan Bookmark
+                                            <i class="far fa-heart fa-lg me-2"></i>
+                                        @endif
+                                        <p class="mb-0"><span>{{ $agenda->likes->count() }} Suka</span></p>
+                                    </button>
+                                </form>
+                                <form action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn w-md @if($agenda->bookmarks->contains('user_id', Auth::id())) btn-danger @else btn-subtle-primary @endif d-flex align-items-center justify-content-center">
+                                        @if($agenda->bookmarks->contains('user_id', Auth::id()))
+                                            <i class="fas fa-bookmark fa-lg me-2"></i> Hapus Bookmark
+                                        @else
+                                            <i class="far fa-bookmark fa-lg me-2"></i> Simpan Bookmark
                                         @endif
                                     </button>
                                 </form>
@@ -81,7 +92,7 @@
                                                     <div class="row timeline-left">
                                                         <div class="col-md-6 d-md-none d-block">
                                                             <div class="timeline-icon">
-                                                                <i class="mdi-car-estate text-primary h2 mb-0"></i>
+                                                                <i class="fas fa-car-side text-primary h2 mb-0"></i>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">

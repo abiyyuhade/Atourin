@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Auth;
 class DetailController extends Controller
 {
     public function index(Agenda $agenda){
-    $details = $agenda->details;
-    return view('details.index', compact('details', 'agenda'));
+        $details = $agenda->details()->orderBy('mulai')->get();
+        return view('details.index', compact('details', 'agenda'));
     }
 
     public function create(Agenda $agenda, $kategori){
@@ -33,6 +33,7 @@ class DetailController extends Controller
         $details = Detail::where('user_id', $userId)
                      ->where('agenda_id', $agenda->id)
                      ->with(['user', 'agenda'])
+                     ->orderBy('mulai')
                      ->get();
         return view('details.userDetail', compact('agenda', 'details'));
     }

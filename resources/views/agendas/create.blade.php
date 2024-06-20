@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <div class="form-check">
+                            <div class="form-check form-switch">
                                 <input
                                     class="form-check-input"
                                     type="checkbox"
