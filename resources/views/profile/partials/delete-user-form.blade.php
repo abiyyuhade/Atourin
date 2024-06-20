@@ -10,7 +10,7 @@
     </header>
 
     <button
-        class="btn btn-danger"
+        class="btn btn-danger w-md"
         data-bs-toggle="modal"
         data-bs-target="#confirmUserDeletionModal"
     >{{ __('Hapus Akun') }}</button>

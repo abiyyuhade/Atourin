@@ -78,7 +78,7 @@
         </div>
 
 
-        <div class="d-flex justify-content-end gap-4">
+        <div class="d-flex justify-content-start gap-4">
 
             @if (session('status') === 'profile-updated')
                 <p
@@ -89,7 +89,7 @@
                     class="badge bg-success-subtle text-success font-size-12"
                 >{{ __('Tersimpan') }}</p>
             @endif
-            <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
+            <button type="submit" class="btn btn-primary w-md">{{ __('Simpan') }}</button>
         </div>
     </form>
 </section>

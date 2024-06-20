@@ -43,7 +43,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('success', 'Profil berhasil diubah');
     }
 
     /**
@@ -64,6 +64,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Akun berhasil dihapus');
     }
 }

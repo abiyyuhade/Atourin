@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/agendas/{agenda}', [AgendaController::class, 'destroy'])->name('agendas.destroy');
 
     Route::post('/agendas/{agenda}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit');

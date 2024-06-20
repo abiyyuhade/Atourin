@@ -11,71 +11,52 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingemailInput"
-                                            placeholder="Enter Email address" disabled />
-                                        <label for="floatingnameInput">{{ $agenda->judul }}</label>
-                                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingemailInput"
+                                        placeholder="Enter Email address" disabled />
+                                    <label for="floatingnameInput">{{ $agenda->judul }}</label>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingemailInput"
-                                            placeholder="Enter Email address" disabled />
-                                        <label for="floatingemailInput">Dari: {{ $agenda->lokasi_berangkat }}</label>
-                                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingemailInput"
+                                        placeholder="Enter Email address" disabled />
+                                    <label for="floatingemailInput">Dari: {{ $agenda->lokasi_berangkat }}</label>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input type="date" class="form-control" id="floatingemailInput"
-                                            placeholder="Enter Email address" disabled value="{{ $agenda->mulai }}" />
-                                        <label for="floatingemailInput">Waktu Berangkat: </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input type="date" class="form-control" id="floatingemailInput"
-                                            placeholder="Enter Email address" disabled value="{{ $agenda->selesai }}" />
-                                        <label for="floatingemailInput">Waktu Selesai:</label>
-                                    </div>
-                                </div>
-                                <div>
-                                    @php
-                                        $userBookmark = $agenda->bookmarks->where('user_id', Auth::id())->first();
-                                    @endphp
-                                    <div>
-                                        <button type="button"
-                                            class="btn w-md @if ($userBookmark) btn-danger @else btn-subtle-primary @endif"
-                                            onclick="document.getElementById('bookmark-form-{{ $agenda->id }}').submit();">
-                                            @if ($userBookmark)
-                                                Hapus Bookmark
-                                            @else
-                                                Simpan Bookmark
-                                            @endif
-                                        </button>
-                                        <form id="bookmark-form-{{ $agenda->id }}"
-                                            action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST"
-                                            style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <form id="bookmark-form-{{ $agenda->id }}"
-                                        action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="floatingemailInput"
+                                        placeholder="Enter Email address" disabled value="{{ $agenda->mulai }}" />
+                                    <label for="floatingemailInput">Waktu Berangkat: </label>
                                 </div>
                             </div>
-                        </form>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="floatingemailInput"
+                                        placeholder="Enter Email address" disabled value="{{ $agenda->selesai }}" />
+                                    <label for="floatingemailInput">Waktu Selesai:</label>
+                                </div>
+                            </div>
+                            <div>
+                                <form id="bookmark-form-{{ $agenda->id }}" action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn w-md @if($agenda->bookmarks->contains('user_id', Auth::id())) btn-danger @else btn-subtle-primary @endif">
+                                        @if($agenda->bookmarks->contains('user_id', Auth::id()))
+                                            Hapus Bookmark
+                                        @else
+                                            Simpan Bookmark
+                                        @endif
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <!-- end card body -->
                 </div>
@@ -192,40 +173,54 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-xl-8">
                         <div class="">
                             <h5 class="font-size-14 mb-3">Komentar : </h5>
-
                             <div class="border py-3 rounded">
-
                                 <div class="px-4" data-simplebar style="max-height: 360px;">
-                                    @foreach ($agenda->comments as $comment)
-                                        <!-- ITERASI KOMENTAR -->
-                                        <div class="border-bottom pb-3 pt-3">
-                                            <p class="float-sm-end text-muted font-size-13">
-                                                {{ $comment->created_at->format('d M, Y') }}</p>
-                                            <div class="d-flex align-items-start">
-                                                <div class="flex-grow-1">
-                                                    <div class="d-flex">
-                                                        <img src="{{ URL::asset('build/images/users/avatar-2.jpg') }}"
-                                                            class="avatar-sm rounded-circle" alt="">
-                                                        <div class="flex-1 mt-2 ps-3">
-                                                            <h5 class="font-size-16 mb-0">{{ $comment->user->name }}</h5>
+                                    @if ($agenda->comments->isEmpty())
+                                        <!-- KETERANGAN BELUM ADA KOMENTAR -->
+                                        <div class="pt-3">
+                                            <p class="text-muted text-center">Belum ada komentar</p>
+                                        </div>
+                                    @else
+                                        @foreach ($agenda->comments as $comment)
+                                            <!-- ITERASI KOMENTAR -->
+                                            <div class="border-bottom pb-3 pt-3">
+                                                <p class="float-sm-end text-muted font-size-13">
+                                                    {{ $comment->created_at->format('d M, Y') }}</p>
+                                                <div class="d-flex align-items-start">
+                                                    <div class="flex-grow-1">
+                                                        <div class="d-flex">
+                                                            <img src="{{ URL::asset('build/images/users/avatar-10.jpg') }}"
+                                                                class="avatar-sm rounded-circle" alt="">
+                                                            <div class="flex-1 mt-2 ps-3">
+                                                                <h5 class="font-size-16 mb-0">{{ $comment->user->name }}</h5>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <p class="text-muted my-3">{{ $comment->deskripsi }}</p>
+                                                <p class="text-muted my-3">{{ $comment->deskripsi }}</p>
 
-                                        </div>
-                                        <!-- ITERASI KOMENTAR SELESAI -->
-                                    @endforeach
+                                                @if (Auth::id() === $comment->user_id)
+                                                    <!-- Delete Button -->
+                                                    <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm">Hapus Komentar</button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                            <!-- ITERASI KOMENTAR SELESAI -->
+                                        @endforeach
+                                    @endif
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+
+                    <div class="col-xl-4">
                         <div class="px-4 mt-2">
                             <div class="border rounded mt-4">
                                 <form action="{{ route('comments.store', $agenda->id) }}" method="POST">
@@ -255,8 +250,9 @@
                     </div>
                 </div>
             </div>
+        </div>
             @endsection @section('scripts')
             <!-- App js -->
             <script src="{{ URL::asset('build/js/app.js') }}"></script>
         @endsection
-</body>
+    </body>

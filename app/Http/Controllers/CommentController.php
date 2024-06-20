@@ -21,4 +21,17 @@ class CommentController extends Controller
 
         return redirect()->route('details.index', $agenda->id)->with('success', 'Berhasil menambah komentar');
     }
+
+    public function destroy(Comment $comment)
+    {
+        // Ensure the user is authorized to delete the comment
+        if (Auth::id() !== $comment->user_id) {
+            return redirect()->back()->with('error', 'Kamu tidak diizinkan menghapus komentar ini');
+        }
+
+        // Delete the comment
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Berhasil menghapus komentar');
+    }
 }

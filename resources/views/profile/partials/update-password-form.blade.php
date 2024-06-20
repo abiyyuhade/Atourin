@@ -1,10 +1,11 @@
 <section>
     <header>
-        <h4 class="card-title mb-3 text-lg font-medium text-gray-900">
+        <h5 class="text-lg font-medium text-gray-900">
             {{ __('Perbarui Kata Sandi') }}
-        </h4>
+        </h5>
+
         <p class="mt-1 text-sm text-gray-600">
-            {{ __('Pastikan akun Anda menggunakan kata sandi yang panjang dan acak agar tetap aman.') }}
+            {{ __('Pastikan akun Anda menggunakan kata sandi yang panjang dan acak untuk tetap aman.') }}
         </p>
     </header>
 
@@ -13,31 +14,37 @@
         @method('put')
 
         <div class="mb-3">
-            <label for="update_password_current_password" class="form-label">{{ __('Kata sandi saat ini') }}</label>
-            <input id="update_password_current_password" name="current_password" type="password" class="form-control mt-1 block w-full" autocomplete="current-password">
-            @error('current_password')
-                <span class="text-danger mt-2">{{ $message }}</span>
-            @enderror
+            <label for="update_password_current_password" class="form-label">{{ __('Kata Sandi Saat Ini') }}</label>
+            <input id="update_password_current_password" name="current_password" type="password" class="form-control" autocomplete="current-password">
+            @if ($errors->updatePassword->has('current_password'))
+                <div class="text-danger mt-2">
+                    {{ $errors->updatePassword->first('current_password') }}
+                </div>
+            @endif
         </div>
 
         <div class="mb-3">
-            <label for="update_password_password" class="form-label">{{ __('Kata sandi baru') }}</label>
-            <input id="update_password_password" name="password" type="password" class="form-control mt-1 block w-full" autocomplete="new-password">
-            @error('password')
-                <span class="text-danger mt-2">{{ $message }}</span>
-            @enderror
+            <label for="update_password_password" class="form-label">{{ __('Kata Sandi Baru') }}</label>
+            <input id="update_password_password" name="password" type="password" class="form-control" autocomplete="new-password">
+            @if ($errors->updatePassword->has('password'))
+                <div class="text-danger mt-2">
+                    {{ $errors->updatePassword->first('password') }}
+                </div>
+            @endif
         </div>
 
         <div class="mb-3">
-            <label for="update_password_password_confirmation" class="form-label">{{ __('Konfirmasi kata sandi') }}</label>
-            <input id="update_password_password_confirmation" name="password_confirmation" type="password" class="form-control mt-1 block w-full" autocomplete="new-password">
-            @error('password_confirmation')
-                <span class="text-danger mt-2">{{ $message }}</span>
-            @enderror
+            <label for="update_password_password_confirmation" class="form-label">{{ __('Konfirmasi Kata Sandi') }}</label>
+            <input id="update_password_password_confirmation" name="password_confirmation" type="password" class="form-control" autocomplete="new-password">
+            @if ($errors->updatePassword->has('password_confirmation'))
+                <div class="text-danger mt-2">
+                    {{ $errors->updatePassword->first('password_confirmation') }}
+                </div>
+            @endif
         </div>
 
-        <div class="d-flex justify-content-end gap-4">
-            <button type="submit" class="btn btn-primary">{{ __('Simpan') }}</button>
+        <div class="d-flex align-items-center gap-4">
+            <button type="submit" class="btn btn-primary w-md">{{ __('Simpan') }}</button>
 
             @if (session('status') === 'password-updated')
                 <p
@@ -46,7 +53,7 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+                >{{ __('Tersimpan.') }}</p>
             @endif
         </div>
     </form>
