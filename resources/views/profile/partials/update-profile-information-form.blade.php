@@ -122,7 +122,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var regExpMask = IMask(document.getElementById("regexp-mask"), {
-                mask: /^[1-9]\d{0,13}$/,
+                mask: /^[0-9]\d{0,13}$/,
             });
         });
     </script>
