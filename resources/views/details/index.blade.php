@@ -66,7 +66,15 @@
                                         @endif
                                     </button>
                                 </form>
+                                @if($agenda->user_id == Auth::id())
+                                    <a href="{{ route('details.userDetail', $agenda->id) }}">
+                                        <button type="submit" class="btn w-md btn-subtle-warning d-flex align-items-center justify-content-center">
+                                            <i class="far fa-edit fa-lg me-2"></i>Kelola Agenda
+                                        </button>
+                                    </a>
+                                @endif
                             </div>
+
                         </div>
                     </div>
                     <!-- end card body -->

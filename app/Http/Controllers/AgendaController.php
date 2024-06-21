@@ -49,18 +49,21 @@ class AgendaController extends Controller
     return view('agendas.create');
   }
 
-  public function store(Request $request){
-    $validated = $request -> validate([
-      'judul' => 'required|string|max:255',
-      'lokasi_berangkat' => 'required|string|max:255',
-      'mulai' => 'nullable|date',
-      'selesai' => 'nullable|date',
-      'private' => 'sometimes|boolean',
+  public function store(Request $request) {
+    $validated = $request->validate([
+        'judul' => 'required|string|max:255',
+        'lokasi_berangkat' => 'required|string|max:255',
+        'mulai' => 'nullable|date',
+        'selesai' => 'nullable|date',
+        'private' => 'sometimes|boolean',
     ]);
+
     $validated['private'] = $request->has('private');
-    $request->user()->agendas()->create($validated);
-    return redirect()->route('user.agendas')->with('success', 'Agenda berhasil dibuat');
-  }
+    $agenda = $request->user()->agendas()->create($validated);
+    return redirect()->route('details.userDetail', ['agenda' => $agenda->id])
+                     ->with('success', 'Agenda berhasil dibuat');
+}
+
 
   public function show(Agenda $agenda){
     if ($agenda->private && $agenda->user_id !== Auth::id()) {

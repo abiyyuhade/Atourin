@@ -18,7 +18,7 @@
     </div>
 
     <div class="row">
-        @if($bookmarkedAgendas->isEmpty())
+        @if($agendas->isEmpty())
             <div class="col-lg-4">
                 <div class="card border border-primary">
                     <div class="card-header bg-transparent border-primary">
@@ -31,69 +31,76 @@
                 </div>
             </div><!-- end col -->
         @else
-            @foreach ($bookmarkedAgendas as $agenda)
+            @foreach ($agendas as $agenda)
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header bg-transparent d-flex border-bottom py-2 px-3 align-items-center justify-content-between">
-                            <div>
-                                <p class="mb-0">Oleh: {{ $agenda->user->name }}, pada: {{ $agenda->created_at->format('d M Y') }}</p>
-                            </div>
-                            <div class="d-flex">
-                                <div>
-                                    @php
-                                        $userLike = $agenda->likes->where('user_id', Auth::id())->first();
-                                    @endphp
-                                    <div class="btn p-3 btn-subtle-danger waves-effect waves-light mx-2" onclick="document.getElementById('like-form-{{ $agenda->id }}').submit();">
-                                        @if($userLike)
-                                            <i class="fas fa-heart fa-lg"></i> <!-- Solid heart icon for liked -->
-                                        @else
-                                            <i class="far fa-heart fa-lg"></i> <!-- Regular heart icon for not liked -->
-                                        @endif
-                                    </div>
-                                    <form id="like-form-{{ $agenda->id }}" action="{{ route('agendas.like', $agenda->id) }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                            <div class="d-flex align-items-center">
+                                <img src="{{ URL::asset('build/images/users/avatar-10.jpg') }}" alt="Profile Picture" class="rounded-circle header-profile-user">
+                                <div class="ms-3">
+                                    <p class="mb-0">{{ $agenda->user->name }}</p>
+                                    <small class="text-muted">{{ $agenda->created_at->format('d M Y') }}</small>
                                 </div>
-
+                            </div>
+                            <div class="d-flex gap-3">
                                 <div>
-                                    @php
-                                        $userBookmark = $agenda->bookmarks->where('user_id', Auth::id())->first();
-                                    @endphp
-                                    <div class="btn p-3 btn-subtle-primary waves-effect waves-light mx-2" onclick="document.getElementById('bookmark-form-{{ $agenda->id }}').submit();">
-                                        @if($userBookmark)
-                                            <i class="fas fa-bookmark fa-lg"></i> <!-- Solid bookmark icon for bookmarked -->
-                                        @else
-                                            <i class="far fa-bookmark fa-lg"></i> <!-- Regular bookmark icon for not bookmarked -->
-                                        @endif
-                                    </div>
-                                    <form id="bookmark-form-{{ $agenda->id }}" action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST" style="display: none;">
+                                    <form class="mb-0" action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST">
                                         @csrf
+                                        <button type="submit" class="btn p-3 btn-subtle-primary waves-effect waves-light">
+                                            @if($agenda->bookmarks->contains('user_id', Auth::id()))
+                                                <i class="fas fa-bookmark fa-lg"></i>
+                                            @else
+                                                <i class="far fa-bookmark fa-lg"></i>
+                                            @endif
+                                        </button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">{{ $agenda->judul }}</h4>
-                            <p class="card-text">
-                                <i class="fas fa-map-marker-alt"></i> 
-                                Dari: {{ $agenda->lokasi_berangkat }}
-                            </p>
-                            <h5 class="card-title">Destinasi Tujuan</h5>
-                            @foreach($agenda->details as $detail)
-                                @if($detail->kategori === 'destinasi')
-                                    <a href="javascript: void(0);" class="btn btn-light btn-rounded waves-effect waves-light">{{ $detail->judul }}</a>
-                                @endif
-                            @endforeach
+                            <div class="mb-4">
+                                <h5 class="text-primary">{{ $agenda->judul }}</h5>
+                                <p class="card-text">
+                                    <i class="fas fa-map-marker-alt me-2 text-danger"></i>
+                                    <span class="fw-bold me-3">{{ $agenda->lokasi_berangkat }}</span>
+                                    <i class="fas fa-clock me-2 text-info"></i>
+                                    <span class="fw-bold me-3">{{ $agenda->durasi }}</span>
+                                    <i class="fas fa-money-bill-wave me-2 text-success"></i>
+                                    <span class="fw-bold">{{ $agenda->total_biaya }}</span>
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h6 class="text-secondary">Destinasi:</h6>
+                                <div class="d-flex flex-wrap gap-1">
+                                    @foreach($agenda->details as $detail)
+                                        @if($detail->kategori === 'destinasi')
+                                        <a href="javascript: void(0);" class="btn btn-light btn-rounded waves-effect waves-light">{{ $detail->judul }}</a>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
+
                         <div class="card-footer bg-transparent border-top text-muted d-flex justify-content-between gap-4 py-2 px-3">
-                            <div class="d-flex gap-4 mt-2">
-                                <p class="mb-0"><span>{{ $agenda->likes->count() }} Suka</span></p>
-                                <p class="mb-0">500 Komentar</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <form class="mb-0" action="{{ route('agendas.like', $agenda->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-subtle-danger waves-effect waves-light me-2 d-flex align-items-center justify-content-center">
+                                        @if($agenda->likes->contains('user_id', Auth::id()))
+                                            <i class="fas fa-heart fa-lg me-2"></i>
+                                        @else
+                                            <i class="far fa-heart fa-lg me-2"></i>
+                                        @endif
+                                        <p class="mb-0"><span>{{ $agenda->likes->count() }} Suka</span></p>
+                                    </button>
+                                </form>
+                                <p class="mb-0">{{ $agenda->comments->count() }} Komentar</p>
                             </div>
                             <a href="{{ route('details.index', $agenda->id) }}" style="color: blue; text-decoration: none;" class="btn btn-subtle-primary">
-                                Lihat selengkapnya
+                                Selengkapnya
                             </a>
-                        </div>         
+                        </div>
                     </div>
                 </div>
             @endforeach

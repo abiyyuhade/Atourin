@@ -87,7 +87,7 @@
                             <p class="mb-0">{{ $agenda->comments->count() }} Komentar</p>
                         </div>
                         <a href="{{ route('details.index', $agenda->id) }}" style="color: blue; text-decoration: none;" class="btn btn-subtle-primary">
-                            Lihat selengkapnya
+                            Selengkapnya
                         </a>
                     </div>
                 </div>
