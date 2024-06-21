@@ -118,6 +118,12 @@
 @section('scripts')
     <!-- form mask -->
     <script src="{{ URL::asset('build/libs/imask/imask.min.js') }}"></script>
-    <!-- form mask init -->
-    <script src="{{ URL::asset('build/js/pages/form-mask.init.js') }}"></script>
+    <!-- form mask Init -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var regExpMask = IMask(document.getElementById("regexp-mask"), {
+                mask: /^[1-9]\d{0,13}$/,
+            });
+        });
+    </script>
 @endsection

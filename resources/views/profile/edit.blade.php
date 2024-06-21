@@ -88,8 +88,6 @@
     <script src="{{ URL::asset('build/js/pages/profile.init.js') }}"></script>
     <!-- form mask -->
     <script src="{{ URL::asset('build/libs/imask/imask.min.js') }}"></script>
-    <!-- form mask init -->
-    <script src="{{ URL::asset('build/js/pages/form-mask.init.js') }}"></script>
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endsection

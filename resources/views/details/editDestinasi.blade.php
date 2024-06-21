@@ -102,8 +102,6 @@
         <script src="{{ URL::asset('build/js/app.js') }}"></script>
         <!-- form mask -->
         <script src="{{ URL::asset('build/libs/imask/imask.min.js') }}"></script>
-        <!-- form mask init -->
-        <script src="{{ URL::asset('build/js/pages/form-mask.init.js') }}"></script>
 
         <!-- datepicker js -->
         <script src="{{ URL::asset('build/libs/flatpickr/flatpickr.min.js') }}"></script>
@@ -120,6 +118,14 @@
                 dateFormat: "d-m-Y H:i",
                 time_24hr: true,
                 defaultDate: "{{ $detail->selesai }}"
+            });
+        </script>
+        <!-- form mask Init -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var regExpMask = IMask(document.getElementById("regexp-mask"), {
+                    mask: /^[1-9]\d{0,9}$/,
+                });
             });
         </script>
     @endsection
