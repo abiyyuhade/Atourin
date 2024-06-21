@@ -12,12 +12,12 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
         <div class="mb-3">
-            <label for="name" class="form-label">{{ __('Name') }}</label>
+            <label for="name" class="form-label">{{ __('Nama') }}</label>
             <input id="name" name="name" type="text" class="form-control mt-1 block w-full" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name">
             @error('name')
                 <span class="text-danger mt-2">{{ $message }}</span>
@@ -49,6 +49,15 @@
             @endif
         </div>
 
+        <!-- Tambahan untuk Nomor Telepon -->
+        <div class="mb-3">
+            <label for="regexp-mask" class="form-label">{{ __('Nomor Telepon') }}</label>
+            <input id="regexp-mask" name="no_telp" type="text" class="form-control mt-1 block w-full" value="{{ old('no_telp', $user->no_telp) }}">
+            @error('no_telp')
+                <span class="text-danger mt-2">{{ $message }}</span>
+            @enderror
+        </div>
+
         <div class="mb-3">
             <label for="tgl_lahir" class="form-label">{{ __('Tanggal Lahir') }}</label>
             <input id="tgl_lahir" name="tgl_lahir" type="date" class="form-control mt-1 block w-full" value="{{ old('tgl_lahir', $user->tgl_lahir) }}">
@@ -77,9 +86,21 @@
             @enderror
         </div>
 
+        <!-- Tambahan untuk Foto Profil -->
+        <div class="mb-3">
+            <label for="profile_photo" class="form-label">{{ __('Foto Profil') }}</label>
+            <input id="profile_photo" name="foto" type="file" class="form-control mt-1 block w-full">
+            @if ($user->foto)
+                <div class="mt-2">
+                    <img src="{{ asset('storage/' . $user->foto) }}" alt="Profile Photo" class="avatar rounded img-thumbnail" width="100">
+                </div>
+            @endif
+            @error('foto')
+                <span class="text-danger mt-2">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="d-flex justify-content-start gap-4">
-
             @if (session('status') === 'profile-updated')
                 <p
                     x-data="{ show: true }"
@@ -93,3 +114,10 @@
         </div>
     </form>
 </section>
+
+@section('scripts')
+    <!-- form mask -->
+    <script src="{{ URL::asset('build/libs/imask/imask.min.js') }}"></script>
+    <!-- form mask init -->
+    <script src="{{ URL::asset('build/js/pages/form-mask.init.js') }}"></script>
+@endsection

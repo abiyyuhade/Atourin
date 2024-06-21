@@ -39,7 +39,7 @@
                     id="page-header-user-dropdown-v" data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     <img class="rounded-circle header-profile-user"
-                        src="{{ URL::asset('build/images/users/avatar-10.jpg') }}" alt="Header Avatar">
+                        src="{{ Auth::user()->foto ? asset('storage/' . Auth::user()->foto) : URL::asset('build/images/users/avatar-10.jpg') }}" alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-2 fw-medium font-size-15">{{ Auth::user()->name }}</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end pt-0">

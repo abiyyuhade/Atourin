@@ -24,7 +24,7 @@
 
                 <div class="p-4 pt-0">
                     <div class="mt-n5 position-relative text-center border-bottom pb-3">
-                        <img src="{{ URL::asset('build/images/users/avatar-10.jpg') }}" alt=""
+                        <img src="{{ $user->foto ? asset('storage/' . $user->foto) : URL::asset('build/images/users/avatar-10.jpg') }}" alt=""
                              class="avatar-xl rounded-circle img-thumbnail">
                         <div class="mt-3">
                             <h5 class="mb-1">{{ Auth::user()->name }}</h5> <!-- Menampilkan nama pengguna -->
@@ -35,6 +35,10 @@
                     <div class="table-responsive mt-3 border-bottom pb-3">
                         <table class="table align-middle table-sm table-nowrap table-borderless table-centered mb-0">
                             <tbody>
+                            <tr>
+                                <th class="fw-bold">Telepon :</th>
+                                <td class="text-muted">{{ Auth::user()->no_telp }}</td> <!-- Menampilkan nomor telepon pengguna -->
+                            </tr>
                             <tr>
                                 <th class="fw-bold">Jenis Kelamin :</th>
                                 <td class="text-muted">{{ Auth::user()->jk }}</td> <!-- Menampilkan jenis kelamin pengguna -->
@@ -82,6 +86,10 @@
     <!-- apexcharts -->
     <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ URL::asset('build/js/pages/profile.init.js') }}"></script>
+    <!-- form mask -->
+    <script src="{{ URL::asset('build/libs/imask/imask.min.js') }}"></script>
+    <!-- form mask init -->
+    <script src="{{ URL::asset('build/js/pages/form-mask.init.js') }}"></script>
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endsection

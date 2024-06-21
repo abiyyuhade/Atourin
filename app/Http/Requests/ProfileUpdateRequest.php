@@ -28,6 +28,8 @@ class ProfileUpdateRequest extends FormRequest
             'tgl_lahir' => ['nullable', 'date'],
             'alamat' => ['nullable', 'string'],
             'jk' => ['nullable', 'in:laki,perempuan'],
+            'no_telp' => 'nullable|string|max:15',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

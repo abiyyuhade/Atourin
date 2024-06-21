@@ -36,7 +36,7 @@
                     <div class="card">
                         <div class="card-header bg-transparent d-flex border-bottom py-2 px-3 align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                                <img src="{{ URL::asset('build/images/users/avatar-10.jpg') }}" alt="Profile Picture" class="rounded-circle header-profile-user">
+                                <img src="{{ $agenda->user->foto ? asset('storage/' . $agenda->user->foto) : URL::asset('build/images/users/avatar-10.jpg') }}" alt="Profile Picture" class="rounded-circle header-profile-user">
                                 <div class="ms-3">
                                     <p class="mb-0">{{ $agenda->user->name }}</p>
                                     <small class="text-muted">{{ $agenda->created_at->format('d M Y') }}</small>
