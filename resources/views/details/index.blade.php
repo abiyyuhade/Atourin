@@ -80,7 +80,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row justify-content-center">
-                            <div class="col-xl-10">
+                            <div class="col-xl-12">
                                 <div class="timeline">
                                     <div class="timeline-container">
                                         <div class="timeline-end">
@@ -108,17 +108,22 @@
                                                                 <div class="event-content">
                                                                     <div class="timeline-text">
                                                                         <h3 class="font-size-17">{{ $detail->judul }}</h3>
+                                                                        <i class="fas fa-clock me-1 text-primary"></i>
                                                                         <div class="btn btn-outline-primary">
-                                                                            Mulai:
                                                                             <b>{{ \Carbon\Carbon::parse($detail->mulai)->format('H:i') }}</b>
                                                                         </div>
+                                                                        <span class="mx-1"><b>-</b></span>
                                                                         <div class="btn btn-outline-primary">
-                                                                            Selesai:
-                                                                            <b>{{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}</b>
+                                                                            <b>
+                                                                                @if (\Carbon\Carbon::parse($detail->mulai)->format('Y-m-d') !== \Carbon\Carbon::parse($detail->selesai)->format('Y-m-d'))
+                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('d F H:i') }}
+                                                                                @else
+                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}
+                                                                                @endif
+                                                                            </b>
                                                                         </div><br>
-                                                                        <div
-                                                                            class="btn btn-subtle-primary mt-3 waves-effect waves-light">
-                                                                            Harga: <b>{{ $detail->biaya }}</b>
+                                                                        <div class="btn btn-subtle-primary mt-3 waves-effect waves-light">
+                                                                            Biaya: <b>{{ $detail->biaya }}</b>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -130,6 +135,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 @elseif($detail->kategori == 'destinasi')
                                                     <div class="row timeline-right">
                                                         <div class="col-md-6">
@@ -150,17 +156,22 @@
                                                                 <div class="event-content">
                                                                     <div class="timeline-text">
                                                                         <h3 class="font-size-17">{{ $detail->judul }}</h3>
+                                                                        <i class="fas fa-clock me-1 text-primary"></i>
                                                                         <div class="btn btn-outline-primary">
-                                                                            Mulai:
                                                                             <b>{{ \Carbon\Carbon::parse($detail->mulai)->format('H:i') }}</b>
                                                                         </div>
+                                                                        <span class="mx-1"><b>-</b></span>
                                                                         <div class="btn btn-outline-primary">
-                                                                            Selesai:
-                                                                            <b>{{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}</b>
+                                                                            <b>
+                                                                                @if (\Carbon\Carbon::parse($detail->mulai)->format('Y-m-d') !== \Carbon\Carbon::parse($detail->selesai)->format('Y-m-d'))
+                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('d F H:i') }}
+                                                                                @else
+                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}
+                                                                                @endif
+                                                                            </b>
                                                                         </div><br>
-                                                                        <div
-                                                                            class="btn btn-subtle-primary mt-3 waves-effect waves-light">
-                                                                            Harga: <b>{{ $detail->biaya }}</b>
+                                                                        <div class="btn btn-subtle-primary mt-3 waves-effect waves-light">
+                                                                            Biaya: <b>{{ $detail->biaya }}</b>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -232,7 +243,7 @@
                     </div>
 
                     <div class="col-xl-4">
-                        <div class="px-4 mt-2">
+                        <div class="mt-2">
                             <div class="border rounded mt-4">
                                 <form action="{{ route('comments.store', $agenda->id) }}" method="POST">
                                     @csrf
@@ -249,7 +260,7 @@
                                                     class="bx bx-at"></i></button>
                                         </div>
                                     </div>
-                                    <textarea rows="7" class="form-control border-0 resize-none" placeholder="Komentar anda..." name="deskripsi"></textarea>
+                                    <textarea rows="3" class="form-control border-0 resize-none" placeholder="Komentar anda..." name="deskripsi"></textarea>
                                     <div class="text-end mt-3">
                                         <button type="submit" class="btn btn-success w-sm text-truncate ms-2">
                                             Kirim <i class="bx bx-send ms-2 align-middle"></i>

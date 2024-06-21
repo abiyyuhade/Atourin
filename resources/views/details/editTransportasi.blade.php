@@ -1,6 +1,12 @@
 @extends('layouts.master') @section('title') Tambah Agenda @endsection
 
-@section('page-title') @endsection @section('body')
+@section('page-title') @endsection 
+@section('css')
+    <!-- datepicker css -->
+    <link rel="stylesheet" href="{{ URL::asset('build/libs/flatpickr/flatpickr.min.css') }}">
+@endsection
+
+@section('body')
 
 <body>
     @endsection @section('content')
@@ -33,7 +39,7 @@
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="biaya"
+                                        id="regexp-mask"
                                         name="biaya"
                                         placeholder="Enter Email address"
                                         value="{{ $detail->biaya }}"
@@ -50,10 +56,9 @@
                                     <input
                                         type="datetime-local"
                                         class="form-control"
-                                        id="mulai"
+                                        id="datepicker-mulai"
                                         name="mulai"
                                         placeholder="Enter Email address"
-                                        value="{{ $detail->mulai }}"
                                     />
                                     <label for="floatingemailInput"
                                         >Waktu Mulai</label
@@ -63,12 +68,11 @@
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <input
-                                        type="datetime-local"
+                                        type="text"
                                         class="form-control"
-                                        id="selesai"
+                                        id="datepicker-selesai"
                                         name="selesai"
                                         placeholder="Enter Email address"
-                                        value="{{ $detail->selesai }}"
                                     />
                                     <label for="floatingemailInput"
                                         >Waktu Selesai</label
@@ -91,7 +95,29 @@
     </div>
     <!-- end row -->
     @endsection @section('scripts')
-    <!-- App js -->
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+        <!-- App js -->
+        <script src="{{ URL::asset('build/js/app.js') }}"></script>
+        <!-- form mask -->
+        <script src="{{ URL::asset('build/libs/imask/imask.min.js') }}"></script>
+        <!-- form mask init -->
+        <script src="{{ URL::asset('build/js/pages/form-mask.init.js') }}"></script>
+
+        <!-- datepicker js -->
+        <script src="{{ URL::asset('build/libs/flatpickr/flatpickr.min.js') }}"></script>
+        
+        <script>
+            flatpickr('#datepicker-mulai', {
+                enableTime: true,
+                dateFormat: "d-m-Y H:i",
+                time_24hr: true,
+                defaultDate: "{{ $detail->mulai }}"
+            });
+            flatpickr('#datepicker-selesai', {
+                enableTime: true,
+                dateFormat: "d-m-Y H:i",
+                time_24hr: true,
+                defaultDate: "{{ $detail->selesai }}"
+            });
+        </script>
     @endsection
 </body>

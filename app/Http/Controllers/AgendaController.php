@@ -110,6 +110,7 @@ class AgendaController extends Controller
                     $q->where('judul', 'LIKE', "%{$searchTerm}%")->where('kategori', 'destinasi');
                   })
                   ->paginate(20);
+      $this->componentAgendas($agendas);
       return view('agendas.index', compact('agendas', 'searchTerm'));
   }
 }
