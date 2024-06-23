@@ -23,12 +23,18 @@
                         <div class="form-floating mb-3">
                             <input
                                 type="text"
-                                class="form-control"
+                                class="form-control @error('judul') is-invalid @enderror"
                                 id="judul"
                                 name="judul"
                                 placeholder="Enter Name"
+                                value="{{ old('judul') }}"
                             />
                             <label for="floatingnameInput">Judul</label>
+                            @error('judul')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <input type="hidden" name="kategori" value="{{ $kategori }}">
                         <div class="row">
@@ -40,7 +46,6 @@
                                         id="regexp-mask"
                                         name="biaya"
                                         placeholder="Enter Email address"
-                                        required
                                     />
                                     <label for="floatingemailInput"
                                         >Biaya</label

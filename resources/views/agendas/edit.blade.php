@@ -18,28 +18,36 @@
                         <div class="form-floating mb-3">
                             <input
                                 type="text"
-                                class="form-control"
+                                class="form-control @error('judul') is-invalid @enderror"
                                 id="judul"
                                 name="judul"
                                 placeholder="Judul"
                                 value="{{ $agenda->judul }}"
                             />
                             <label for="judul">Judul Agenda</label>
+                            @error('judul')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        class="form-control @error('lokasi_berangkat') is-invalid @enderror"
                                         id="lokasi_berangkat"
                                         name="lokasi_berangkat"
                                         placeholder="Lokasi Awal"
                                         value="{{ $agenda->lokasi_berangkat }}"
                                     />
-                                    <label for="lokasi_berangkat"
-                                        >Lokasi Berangkat</label
-                                    >
+                                    <label for="lokasi_berangkat">Lokasi Berangkat</label>
+                                    @error('lokasi_berangkat')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

@@ -70,6 +70,8 @@ class DetailController extends Controller
             'biaya' => 'nullable|integer',
             'mulai' => 'nullable|date_format:d-m-Y H:i',
             'selesai' => 'nullable|date_format:d-m-Y H:i',
+        ], [
+        'judul.required' => 'Judul harus diisikan.',
         ]);
 
         if (!empty($validatedData['mulai'])) {

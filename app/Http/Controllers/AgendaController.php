@@ -56,7 +56,10 @@ class AgendaController extends Controller
         'mulai' => 'nullable|date',
         'selesai' => 'nullable|date',
         'private' => 'sometimes|boolean',
-    ]);
+    ], [
+    'judul.required' => 'Judul harus diisikan.',
+    'lokasi_berangkat.required' => 'Lokasi Awal / Lokasi Keberangkatan harus diisikan.',
+  ]);
 
     $validated['private'] = $request->has('private');
     $agenda = $request->user()->agendas()->create($validated);
