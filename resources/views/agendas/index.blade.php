@@ -72,10 +72,10 @@
                     </div>
 
                     <div class="card-footer bg-transparent border-top text-muted d-flex justify-content-between gap-4 py-2 px-3">
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center gap-2">
                             <form class="mb-0" action="{{ route('agendas.like', $agenda->id) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-subtle-danger waves-effect waves-light me-2 d-flex align-items-center justify-content-center">
+                                <button type="submit" class="btn btn-subtle-danger waves-effect waves-light d-flex align-items-center justify-content-center">
                                     @if($agenda->likes->contains('user_id', Auth::id()))
                                         <i class="fas fa-heart fa-lg me-2"></i>
                                     @else
@@ -84,7 +84,7 @@
                                     <p class="mb-0"><span>{{ $agenda->likes->count() }} Suka</span></p>
                                 </button>
                             </form>
-                            <p class="mb-0">{{ $agenda->comments->count() }} Komentar</p>
+                            <p class="mb-0 d-none d-sm-block">{{ $agenda->comments->count() }} komentar</p>
                         </div>
                         <a href="{{ route('details.index', $agenda->id) }}" style="color: blue; text-decoration: none;" class="btn btn-subtle-primary">
                             Selengkapnya

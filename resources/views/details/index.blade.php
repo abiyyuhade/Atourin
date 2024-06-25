@@ -58,18 +58,18 @@
                                 </form>
                                 <form action="{{ route('agendas.bookmark', $agenda->id) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn w-md @if($agenda->bookmarks->contains('user_id', Auth::id())) btn-danger @else btn-subtle-primary @endif d-flex align-items-center justify-content-center">
+                                    <button type="submit" class="btn @if($agenda->bookmarks->contains('user_id', Auth::id())) btn-danger @else btn-subtle-primary @endif d-flex align-items-center justify-content-center">
                                         @if($agenda->bookmarks->contains('user_id', Auth::id()))
-                                            <i class="fas fa-bookmark fa-lg me-2"></i> Hapus Bookmark
+                                            <i class="fas fa-bookmark fa-lg me-2 d-block d-sm-none p-1"></i> <span class="d-none d-sm-block">Hapus Bookmark</span>
                                         @else
-                                            <i class="far fa-bookmark fa-lg me-2"></i> Simpan Bookmark
+                                            <i class="far fa-bookmark fa-lg me-2 d-block d-sm-none p-1"></i> <span class="d-none d-sm-block">Simpan Bookmark</span>
                                         @endif
                                     </button>
                                 </form>
                                 @if($agenda->user_id == Auth::id())
                                     <a href="{{ route('details.userDetail', $agenda->id) }}">
-                                        <button type="submit" class="btn w-md btn-subtle-warning d-flex align-items-center justify-content-center">
-                                            <i class="far fa-edit fa-lg me-2"></i>Kelola Agenda
+                                        <button type="submit" class="btn btn-subtle-warning d-flex align-items-center justify-content-center">
+                                            <i class="far fa-edit fa-lg me-2 d-block d-sm-none p-1"></i> <span class="d-none d-sm-block">Kelola Agenda</span>
                                         </button>
                                     </a>
                                 @endif
@@ -116,20 +116,22 @@
                                                                 <div class="event-content">
                                                                     <div class="timeline-text">
                                                                         <h3 class="font-size-17">{{ $detail->judul }}</h3>
-                                                                        <i class="fas fa-clock me-1 text-primary"></i>
-                                                                        <div class="btn btn-outline-primary">
-                                                                            <b>{{ \Carbon\Carbon::parse($detail->mulai)->format('H:i') }}</b>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <i class="fas fa-clock me-1 text-primary"></i>
+                                                                            <div class="text-primary">
+                                                                                <b>{{ \Carbon\Carbon::parse($detail->mulai)->format('H:i') }}</b>
+                                                                            </div>
+                                                                            <span class="mx-1 text-primary"><b>-</b></span>
+                                                                            <div class="text-primary">
+                                                                                <b>
+                                                                                    @if (\Carbon\Carbon::parse($detail->mulai)->format('Y-m-d') !== \Carbon\Carbon::parse($detail->selesai)->format('Y-m-d'))
+                                                                                        {{ \Carbon\Carbon::parse($detail->selesai)->format('d F H:i') }}
+                                                                                    @else
+                                                                                        {{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}
+                                                                                    @endif
+                                                                                </b>
+                                                                            </div>
                                                                         </div>
-                                                                        <span class="mx-1"><b>-</b></span>
-                                                                        <div class="btn btn-outline-primary">
-                                                                            <b>
-                                                                                @if (\Carbon\Carbon::parse($detail->mulai)->format('Y-m-d') !== \Carbon\Carbon::parse($detail->selesai)->format('Y-m-d'))
-                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('d F H:i') }}
-                                                                                @else
-                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}
-                                                                                @endif
-                                                                            </b>
-                                                                        </div><br>
                                                                         <div class="btn btn-subtle-primary mt-3 waves-effect waves-light">
                                                                             Biaya: <b>{{ $detail->biaya }}</b>
                                                                         </div>
@@ -164,20 +166,22 @@
                                                                 <div class="event-content">
                                                                     <div class="timeline-text">
                                                                         <h3 class="font-size-17">{{ $detail->judul }}</h3>
-                                                                        <i class="fas fa-clock me-1 text-primary"></i>
-                                                                        <div class="btn btn-outline-primary">
-                                                                            <b>{{ \Carbon\Carbon::parse($detail->mulai)->format('H:i') }}</b>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <i class="fas fa-clock me-1 text-primary"></i>
+                                                                            <div class="text-primary">
+                                                                                <b>{{ \Carbon\Carbon::parse($detail->mulai)->format('H:i') }}</b>
+                                                                            </div>
+                                                                            <span class="mx-1 text-primary"><b>-</b></span>
+                                                                            <div class="text-primary">
+                                                                                <b>
+                                                                                    @if (\Carbon\Carbon::parse($detail->mulai)->format('Y-m-d') !== \Carbon\Carbon::parse($detail->selesai)->format('Y-m-d'))
+                                                                                        {{ \Carbon\Carbon::parse($detail->selesai)->format('d F H:i') }}
+                                                                                    @else
+                                                                                        {{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}
+                                                                                    @endif
+                                                                                </b>
+                                                                            </div>
                                                                         </div>
-                                                                        <span class="mx-1"><b>-</b></span>
-                                                                        <div class="btn btn-outline-primary">
-                                                                            <b>
-                                                                                @if (\Carbon\Carbon::parse($detail->mulai)->format('Y-m-d') !== \Carbon\Carbon::parse($detail->selesai)->format('Y-m-d'))
-                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('d F H:i') }}
-                                                                                @else
-                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}
-                                                                                @endif
-                                                                            </b>
-                                                                        </div><br>
                                                                         <div class="btn btn-subtle-primary mt-3 waves-effect waves-light">
                                                                             Biaya: <b>{{ $detail->biaya }}</b>
                                                                         </div>

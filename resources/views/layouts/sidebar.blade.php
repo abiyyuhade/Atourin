@@ -4,7 +4,11 @@
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <a href="{{ route('agendas.index') }}" class="logo logo-dark">
-            <h3 class="mt-4">Atourin</h3>
+            <span class="logo-lg">
+                <h3 class="mt-4">Atourin</h3>
+            </span>
+            <span class="logo-sm">
+            </span>
         </a>
     </div>
 

@@ -95,7 +95,7 @@
                                         <p class="mb-0"><span>{{ $agenda->likes->count() }} Suka</span></p>
                                     </button>
                                 </form>
-                                <p class="mb-0">{{ $agenda->comments->count() }} Komentar</p>
+                                <p class="mb-0 d-none d-sm-block">{{ $agenda->comments->count() }} Komentar</p>
                             </div>
                             <a href="{{ route('details.index', $agenda->id) }}" style="color: blue; text-decoration: none;" class="btn btn-subtle-primary">
                                 Selengkapnya

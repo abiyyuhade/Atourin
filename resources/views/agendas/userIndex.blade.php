@@ -21,7 +21,7 @@
     </div>
     <!-- end row -->
 
-    <div class="row mt-3 mb-2">
+    <div class="row mb-2">
         <h4></h4>
     </div>
 
@@ -45,10 +45,10 @@
                         class="card-header bg-transparent d-flex border-bottom py-2 px-3 align-items-center justify-content-between"
                     >
                         <div class="d-flex align-items-center">
-                            <img src="{{ $agenda->user->foto ? asset('storage/' . $agenda->user->foto) : URL::asset('build/images/users/avatar-10.jpg') }}" alt="Profile Picture" class="rounded-circle header-profile-user">
+                            <img src="{{ $agenda->user->foto ? asset('storage/' . $agenda->user->foto) : URL::asset('build/images/users/avatar-10.jpg') }}" alt="Profile Picture" class="rounded-circle header-profile-user d-none d-sm-block">
                             <div class="ms-3">
                                 <p class="mb-0">{{ $agenda->user->name }}</p>
-                                <small class="text-muted">{{ $agenda->created_at->format('d M Y') }}</small>
+                                <small class="text-muted d-none d-sm-block">{{ $agenda->created_at->format('d M Y') }}</small>
                             </div>
                         </div>
                         <div>
@@ -58,7 +58,7 @@
                                 <span class="btn btn-success btn-sm text-bg-success pt-1">Publish</span>
                             @endif
                         </div>
-                        <div class="d-flex gap-3">
+                        <div class="d-flex gap-2">
                             <button type="button" class="btn btn-subtle-danger waves-effect waves-light p-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
                                 <i class="fas fa-trash fa-lg"></i>
                             </button>

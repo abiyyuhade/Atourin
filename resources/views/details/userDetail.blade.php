@@ -101,7 +101,7 @@
                                                     <div class="row timeline-left">
                                                         <div class="col-md-6 d-md-none d-block">
                                                             <div class="timeline-icon">
-                                                                <i class="mdi-car-estate text-primary h2 mb-0"></i>
+                                                                <i class="fas fa-car-side text-primary h2 mb-0"></i>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -117,20 +117,22 @@
                                                                 <div class="event-content">
                                                                     <div class="timeline-text">
                                                                         <h3 class="font-size-17">{{ $detail->judul }}</h3>
-                                                                        <i class="fas fa-clock me-1 text-primary"></i>
-                                                                        <div class="btn btn-outline-primary">
-                                                                            <b>{{ \Carbon\Carbon::parse($detail->mulai)->format('H:i') }}</b>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <i class="fas fa-clock me-1 text-primary"></i>
+                                                                            <div class="text-primary">
+                                                                                <b>{{ \Carbon\Carbon::parse($detail->mulai)->format('H:i') }}</b>
+                                                                            </div>
+                                                                            <span class="mx-1 text-primary"><b>-</b></span>
+                                                                            <div class="text-primary">
+                                                                                <b>
+                                                                                    @if (\Carbon\Carbon::parse($detail->mulai)->format('Y-m-d') !== \Carbon\Carbon::parse($detail->selesai)->format('Y-m-d'))
+                                                                                        {{ \Carbon\Carbon::parse($detail->selesai)->format('d F H:i') }}
+                                                                                    @else
+                                                                                        {{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}
+                                                                                    @endif
+                                                                                </b>
+                                                                            </div>
                                                                         </div>
-                                                                        <span class="mx-1"><b>-</b></span>
-                                                                        <div class="btn btn-outline-primary">
-                                                                            <b>
-                                                                                @if (\Carbon\Carbon::parse($detail->mulai)->format('Y-m-d') !== \Carbon\Carbon::parse($detail->selesai)->format('Y-m-d'))
-                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('d F H:i') }}
-                                                                                @else
-                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}
-                                                                                @endif
-                                                                            </b>
-                                                                        </div><br>
                                                                         <div class="btn btn-subtle-primary mt-3 waves-effect waves-light">
                                                                             Biaya: <b>{{ $detail->biaya }}</b>
                                                                         </div>
@@ -177,20 +179,22 @@
                                                                 <div class="event-content">
                                                                     <div class="timeline-text">
                                                                         <h3 class="font-size-17">{{ $detail->judul }}</h3>
-                                                                        <i class="fas fa-clock me-1 text-primary"></i>
-                                                                        <div class="btn btn-outline-primary">
-                                                                            <b>{{ \Carbon\Carbon::parse($detail->mulai)->format('H:i') }}</b>
+                                                                        <div class="d-flex align-items-center">
+                                                                            <i class="fas fa-clock me-1 text-primary"></i>
+                                                                            <div class="text-primary">
+                                                                                <b>{{ \Carbon\Carbon::parse($detail->mulai)->format('H:i') }}</b>
+                                                                            </div>
+                                                                            <span class="mx-1 text-primary"><b>-</b></span>
+                                                                            <div class="text-primary">
+                                                                                <b>
+                                                                                    @if (\Carbon\Carbon::parse($detail->mulai)->format('Y-m-d') !== \Carbon\Carbon::parse($detail->selesai)->format('Y-m-d'))
+                                                                                        {{ \Carbon\Carbon::parse($detail->selesai)->format('d F H:i') }}
+                                                                                    @else
+                                                                                        {{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}
+                                                                                    @endif
+                                                                                </b>
+                                                                            </div>
                                                                         </div>
-                                                                        <span class="mx-1"><b>-</b></span>
-                                                                        <div class="btn btn-outline-primary">
-                                                                            <b>
-                                                                                @if (\Carbon\Carbon::parse($detail->mulai)->format('Y-m-d') !== \Carbon\Carbon::parse($detail->selesai)->format('Y-m-d'))
-                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('d F H:i') }}
-                                                                                @else
-                                                                                    {{ \Carbon\Carbon::parse($detail->selesai)->format('H:i') }}
-                                                                                @endif
-                                                                            </b>
-                                                                        </div><br>
                                                                         <div class="btn btn-subtle-primary mt-3 waves-effect waves-light">
                                                                             Biaya: <b>{{ $detail->biaya }}</b>
                                                                         </div>
