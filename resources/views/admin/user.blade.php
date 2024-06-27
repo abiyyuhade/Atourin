@@ -86,7 +86,7 @@
                 user.alamat,
                 gridjs.html(`
                     <div class="gap-2" role="group">
-                        <a href="{{ route('admin.edit', $user->id) }}"><button type="button" class="btn btn-warning btn-sm edit-button">
+                        <a href="{{ url('admin') }}/${user.id}/edit"><button type="button" class="btn btn-warning btn-sm edit-button">
                             <i class="fas fa-edit"></i>
                         </button></a>
                         <button type="button" class="btn btn-danger btn-sm delete-button" data-toggle="modal" data-target="#deleteModal-${user.id}">

@@ -82,7 +82,7 @@
                 agenda.user.email,
                 gridjs.html(`
                   @if(!empty($agenda))
-                    <a href="{{ route('details.index', ['agenda' => $agenda->id]) }}">
+                    <a href="{{ url('agendas') }}/${agenda.id}/details">
                       <button type="button" class="btn btn-info btn-sm">Detail</button>
                     </a>
                   @endif
