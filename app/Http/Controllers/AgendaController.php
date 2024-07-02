@@ -12,8 +12,7 @@ class AgendaController extends Controller
   public function index() {
     $agendas = Agenda::where('private', false)
                         ->with('comments', 'likes', 'bookmarks', 'details', 'user')
-                        ->paginate(20);
-    $this->componentAgendas($agendas);
+                        ->paginate(16);
     return view('agendas.index', compact('agendas'));
   }
 
@@ -22,27 +21,7 @@ class AgendaController extends Controller
     $agendas = Agenda::where('user_id', $userId)
                          ->with(['user', 'details'])
                          ->get();
-    $this->componentAgendas($agendas);
     return view('agendas.userIndex', compact('agendas'));
-  }
-
-  //PERHITUNGAN DURASI DAN TOTAL BIAYA
-  public function componentAgendas($agendas){
-    $agendas->each(function($agenda) {
-      //DURASI
-      if ($agenda->mulai && $agenda->selesai) {
-          $mulai = Carbon::parse($agenda->mulai);
-          $selesai = Carbon::parse($agenda->selesai);
-          $agenda->durasi = $mulai->diffInDays($selesai) . ' hari';
-      }
-
-      //BIAYA
-      $total_biaya = 0;
-      foreach ($agenda->details as $detail) {
-          $total_biaya += $detail->biaya;
-      }
-      $agenda->total_biaya = $total_biaya;
-    });
   }
 
   public function create(){
@@ -116,7 +95,6 @@ class AgendaController extends Controller
                     $q->where('judul', 'LIKE', "%{$searchTerm}%")->where('kategori', 'destinasi');
                   })
                   ->paginate(20);
-      $this->componentAgendas($agendas);
       return view('agendas.index', compact('agendas', 'searchTerm'));
   }
 }

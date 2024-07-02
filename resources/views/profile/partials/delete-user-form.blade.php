@@ -56,7 +56,7 @@
                         {{ __('Batal') }}
                     </button>
 
-                    <button type="submit" class="btn btn-danger">{{ __('Hapus Akun') }}</button>
+                    <button type="submit" class="btn btn-danger" data-single-click>{{ __('Hapus Akun') }}</button>
                 </div>
             </form>
         </div>

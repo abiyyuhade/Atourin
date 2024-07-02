@@ -11,20 +11,24 @@ class LikeController extends Controller
     public function like($agendaId)
     {
         $userId = Auth::id();
-
+    
         $like = Like::where('agenda_id', $agendaId)->where('user_id', $userId)->first();
-
+    
         if ($like) {
-            // If the user has already liked the agenda, unlike it
+            // Jika pengguna telah menyukai agenda, hapus suka tersebut
             $like->delete();
+            $liked = false;
         } else {
-            // Otherwise, like the agenda
+            // Jika belum, tambahkan suka pada agenda
             Like::create([
                 'agenda_id' => $agendaId,
                 'user_id' => $userId,
             ]);
+            $liked = true;
         }
-
-        return redirect()->back()->with('success', 'Berhasil tambah/hapus suka');
+    
+        $likesCount = Like::where('agenda_id', $agendaId)->count();
+    
+        return response()->json(['liked' => $liked, 'likes_count' => $likesCount]);
     }
 }

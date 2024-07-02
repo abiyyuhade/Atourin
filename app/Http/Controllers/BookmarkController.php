@@ -13,21 +13,6 @@ class BookmarkController extends Controller
     {
         $user = Auth::user();
         $agendas = $user->bookmarks->map->agenda;
-        $agendas->each(function($agenda) {
-            //DURASI
-            if ($agenda->mulai && $agenda->selesai) {
-                $mulai = Carbon::parse($agenda->mulai);
-                $selesai = Carbon::parse($agenda->selesai);
-                $agenda->durasi = $mulai->diffInDays($selesai) . ' hari';
-            }
-      
-            //BIAYA
-            $total_biaya = 0;
-            foreach ($agenda->details as $detail) {
-                $total_biaya += $detail->biaya;
-            }
-            $agenda->total_biaya = $total_biaya;
-        });
 
         return view('bookmark', compact('agendas'));
     }
@@ -35,20 +20,21 @@ class BookmarkController extends Controller
     public function bookmark($agendaId)
     {
         $userId = Auth::id();
-
         $bookmark = Bookmark::where('agenda_id', $agendaId)->where('user_id', $userId)->first();
-
+    
         if ($bookmark) {
             // If the user has already bookmarked the agenda, unbookmark it
             $bookmark->delete();
+            $bookmarked = false;
         } else {
             // Otherwise, bookmark the agenda
             Bookmark::create([
                 'agenda_id' => $agendaId,
                 'user_id' => $userId,
             ]);
+            $bookmarked = true;
         }
-
-        return redirect()->back()->with('success', 'Berhasil tambah/hapus markah');
+    
+        return response()->json(['success' => true, 'bookmarked' => $bookmarked]);
     }
 }

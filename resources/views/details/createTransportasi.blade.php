@@ -1,7 +1,7 @@
-@extends('layouts.master') @section('title') Tambah Agenda @endsection
+@extends('layouts.master') 
+@section('title') Tambah Transportasi @endsection
 
 @section('page-title') @endsection 
-
 @section('css')
     <!-- datepicker css -->
     <link rel="stylesheet" href="{{ URL::asset('build/libs/flatpickr/flatpickr.min.css') }}">
@@ -10,16 +10,17 @@
 @section('body')
 
 <body>
-    @endsection @section('content')
+@endsection 
+@section('content')
 
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Tambah Transportasi</h5>
+                    <h5 class="card-title mb-0">Tambah Destinasi</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('details.store', $agenda) }}" method="POST">
+                    <form action="{{ route('details.store', $agenda) }}" method="POST" id="form-tambah-agenda">
                         @csrf
                         <div class="form-floating mb-3">
                             <input
@@ -85,7 +86,7 @@
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary w-md">
+                            <button type="submit" class="btn btn-primary w-md" id="btn-simpan" data-single-click>
                                 Simpan
                             </button>
                         </div>
@@ -98,35 +99,35 @@
         <!-- end col -->
     </div>
     <!-- end row -->
-    @endsection @section('scripts')
-        <!-- App js -->
-        <script src="{{ URL::asset('build/js/app.js') }}"></script>
-        <!-- form mask -->
-        <script src="{{ URL::asset('build/libs/imask/imask.min.js') }}"></script>
+@endsection 
+@section('scripts')
+    <!-- App js -->
+    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+    <!-- form mask -->
+    <script src="{{ URL::asset('build/libs/imask/imask.min.js') }}"></script>
 
-        <!-- datepicker js -->
-        <script src="{{ URL::asset('build/libs/flatpickr/flatpickr.min.js') }}"></script>
-        
-        <!-- datepicker Init -->
-        <script>
-            flatpickr('#datepicker-mulai', {
-                enableTime: true,
-                dateFormat: "d-m-Y H:i",
-                time_24hr: true
+    <!-- datepicker js -->
+    <script src="{{ URL::asset('build/libs/flatpickr/flatpickr.min.js') }}"></script>
+    
+    <script>
+        flatpickr('#datepicker-mulai', {
+            enableTime: true,
+            dateFormat: "d-m-Y H:i",
+            time_24hr: true
+        });
+        flatpickr('#datepicker-selesai', {
+            enableTime: true,
+            dateFormat: "d-m-Y H:i",
+            time_24hr: true
+        });
+    </script>
+    <!-- form mask Init -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var regExpMask = IMask(document.getElementById("regexp-mask"), {
+                mask: /^[1-9]\d{0,9}$/,
             });
-            flatpickr('#datepicker-selesai', {
-                enableTime: true,
-                dateFormat: "d-m-Y H:i",
-                time_24hr: true
-            });
-        </script>
-        <!-- form mask Init -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                var regExpMask = IMask(document.getElementById("regexp-mask"), {
-                    mask: /^[1-9]\d{0,9}$/,
-                });
-            });
-        </script>
-    @endsection
+    </script>
+@endsection
 </body>
+

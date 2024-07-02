@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary w-md">
+                            <button type="submit" class="btn btn-primary w-md" data-single-click>
                                 Simpan
                             </button>
                         </div>

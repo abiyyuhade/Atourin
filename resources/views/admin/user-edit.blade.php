@@ -38,7 +38,7 @@
                                 <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary" data-single-click>Update</button>
                     </form>
                 </div>
                 <!-- end card body -->

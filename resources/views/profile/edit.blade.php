@@ -1,4 +1,5 @@
-@extends('layouts.master') @section('title') Profile @endsection
+@extends('layouts.master')
+@section('title') Profile @endsection
 @section('page-title') Profile @endsection @section('body')
 <body>
     @section('content')

@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 @extends('layouts.master') @section('title')
     Detail Agenda
 @endsection
@@ -10,36 +13,42 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Detail Agenda</h5>
-                    </div>
                     <div class="card-body">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter Name"
-                                disabled />
-                            <label for="floatingnameInput">{{ $agenda->judul }}</label>
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                <h3 class="text-primary">{{ $agenda->judul }}</h3>
+                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingemailInput"
-                                        placeholder="Enter Email address" disabled />
-                                    <label for="floatingemailInput">Dari: {{ $agenda->lokasi_berangkat }}</label>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <div class="card-text d-flex flex-wrap gap-1">
+                                    <div class="me-3">
+                                        <i class="fas fa-map-marker-alt me-1 text-danger"></i>
+                                        <span class="fw-bold">Dari: {{ $agenda->lokasi_berangkat }}</span>
+                                    </div>
+                                    <div class="me-3 d-none d-sm-block">
+                                        <i class="fas fa-clock me-1 text-info"></i>
+                                        <span class="fw-bold">{{ $agenda->durasi }}</span>
+                                    </div>
+                                    <div class="d-none d-sm-block">
+                                        <i class="fas fa-money-bill-wave me-1 text-success"></i>
+                                        <span class="fw-bold">{{ $agenda->total_biaya }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input type="date" class="form-control" id="floatingemailInput"
-                                        placeholder="Enter Email address" disabled value="{{ $agenda->mulai }}" />
+                                    <input type="text" class="form-control" id="floatingemailInput"
+                                        placeholder="Enter Email address" disabled value="{{ $agenda->mulai ? Carbon::parse($agenda->mulai)->format('d F Y (H:i)') : '-' }}" />
                                     <label for="floatingemailInput">Waktu mulai:</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input type="date" class="form-control" id="floatingemailInput"
-                                        placeholder="Enter Email address" disabled value="{{ $agenda->selesai }}" />
+                                    <input type="text" class="form-control" id="floatingemailInput"
+                                        placeholder="Enter Email address" disabled value="{{ $agenda->selesai ? Carbon::parse($agenda->selesai)->format('d F Y (H:i)') : '-' }}" />
                                     <label for="floatingemailInput">Waktu Selesai:</label>
                                 </div>
                             </div>
@@ -74,7 +83,7 @@
                             <form action="{{ route('agendas.destroy', ['agenda' => $agenda->id]) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Hapus</button>
+                            <button type="submit" class="btn btn-danger" data-single-click>Hapus</button>
                             </form>
                         </div>
                         </div>
@@ -168,7 +177,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="timeline-box">
-                                                                <div class="timeline-date bg-primary text-center rounded">
+                                                                <div class="timeline-date bg-info text-center rounded">
                                                                     <h3 class="text-white mb-0 font-size-20">
                                                                         {{ \Carbon\Carbon::parse($detail->mulai)->format('d') }}
                                                                     </h3>
@@ -233,7 +242,7 @@
                                                                 <form action="{{ route('details.destroy', ['agenda' => $agenda->id, 'detail' => $detail->id]) }}" method="POST" class="d-inline">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                    <button type="submit" class="btn btn-danger" data-single-click>Hapus</button>
                                                                 </form>
                                                             </div>
                                                         </div>

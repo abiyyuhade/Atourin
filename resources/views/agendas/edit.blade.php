@@ -51,38 +51,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input
-                                        type="date"
-                                        class="form-control"
-                                        id="mulai"
-                                        name="mulai"
-                                        placeholder="Waktu Berangkat"
-                                        value="{{ $agenda->mulai }}"
-                                    />
-                                    <label for="mulai"
-                                        >Waktu Berangkat</label
-                                    >
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input
-                                        type="date"
-                                        class="form-control"
-                                        id="selesai"
-                                        name="selesai"
-                                        placeholder="Waktu Selesai"
-                                        value="{{ $agenda->selesai }}"
-                                    />
-                                    <label for="selesai"
-                                        >Waktu Selesai</label
-                                    >
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="mb-3">
                             <input type="hidden" name="private" value="0">
@@ -104,7 +72,7 @@
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary w-md">
+                            <button type="submit" class="btn btn-primary w-md" data-single-click>
                                 Simpan
                             </button>
                         </div>

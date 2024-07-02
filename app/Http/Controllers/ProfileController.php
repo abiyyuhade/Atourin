@@ -79,4 +79,18 @@ class ProfileController extends Controller
 
         return redirect()->route('login')->with('success', 'Akun berhasil dihapus');
     }
+    
+    public function deletePhoto(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->foto) {
+            // Delete the profile photo
+            Storage::disk('public')->delete($user->foto);
+            $user->foto = null;
+            $user->save();
+        }
+
+        return Redirect::route('profile.edit')->with('success', 'Foto profil berhasil dihapus');
+    }
 }

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DetailController extends Controller
 {
+    
     public function index(Agenda $agenda){
         $details = $agenda->details()->orderBy('mulai')->get();
         return view('details.index', compact('details', 'agenda'));
@@ -71,23 +72,28 @@ class DetailController extends Controller
             'mulai' => 'nullable|date_format:d-m-Y H:i',
             'selesai' => 'nullable|date_format:d-m-Y H:i',
         ], [
-        'judul.required' => 'Judul harus diisikan.',
+            'judul.required' => 'Judul harus diisikan.',
         ]);
-
+    
         if (!empty($validatedData['mulai'])) {
             $validatedData['mulai'] = Carbon::createFromFormat('d-m-Y H:i', $validatedData['mulai']);
         }
         if (!empty($validatedData['selesai'])) {
             $validatedData['selesai'] = Carbon::createFromFormat('d-m-Y H:i', $validatedData['selesai']);
         }
-
+    
+        if (is_null($validatedData['biaya'])) {
+            $validatedData['biaya'] = 0;
+        }
+    
         $validatedData['user_id'] = Auth::id();
         $validatedData['agenda_id'] = $agenda->id;
-
+    
         $detail = Detail::create($validatedData);
-
+    
         return redirect()->route('details.userDetail', ['agenda' => $agenda->id, 'detail' => $detail->id])->with('success', 'Berhasil menambahkan detail');
     }
+    
 
     public function show(Agenda $agenda, Detail $detail)
     {
@@ -142,6 +148,10 @@ class DetailController extends Controller
             $validatedData['selesai'] = Carbon::createFromFormat('d-m-Y H:i', $validatedData['selesai'])->format('Y-m-d H:i:s');
         }
 
+        if (is_null($validatedData['biaya'])) {
+            $validatedData['biaya'] = 0;
+        }
+
         $validatedData['user_id'] = Auth::id();
         $validatedData['agenda_id'] = $agenda->id;
 
@@ -164,3 +174,4 @@ class DetailController extends Controller
         return redirect()->route('details.userDetails')->with('success', 'Berhasil menghapus agenda');
     }
 }
+

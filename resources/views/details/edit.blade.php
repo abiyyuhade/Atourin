@@ -24,16 +24,6 @@
             <input type="number" class="form-control" id="biaya" name="biaya" value="{{ $detail->biaya }}">
         </div>
 
-        <div class="form-group">
-            <label for="mulai">Start</label>
-            <input type="datetime-local" class="form-control" id="mulai" name="mulai" value="{{ $detail->mulai }}">
-        </div>
-
-        <div class="form-group">
-            <label for="selesai">End</label>
-            <input type="datetime-local" class="form-control" id="selesai" name="selesai" value="{{ $detail->selesai }}">
-        </div>
-
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 @endsection

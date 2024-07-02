@@ -16,4 +16,15 @@
         @endforeach
     @endif
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const singleClickButtons = document.querySelectorAll('button[data-single-click]');
+        singleClickButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                button.disabled = true;
+                button.closest('form').submit();
+            });
+        });
+    });
+</script>
 @yield('scripts')

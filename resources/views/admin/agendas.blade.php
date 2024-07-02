@@ -47,7 +47,7 @@
                                             <form action="{{ route('admin.agendaDestroy', ['agenda' => $agenda->id]) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger waves-effect waves-light">Hapus</button>
+                                                <button type="submit" class="btn btn-danger waves-effect waves-light" data-single-click>Hapus</button>
                                             </form>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                 agenda.user.email,
                 gridjs.html(`
                   @if(!empty($agenda))
-                    <a href="{{ route('details.index', ['agenda' => $agenda->id]) }}">
+                    <a href="{{ url('agendas') }}/${agenda.id}/details">
                       <button type="button" class="btn btn-info btn-sm">Detail</button>
                     </a>
                   @endif

@@ -73,7 +73,7 @@
                                         </div>
 
                                         <div class="mt-3">
-                                            <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Sign Up</button>
+                                            <button class="btn btn-primary w-100 waves-effect waves-light" type="submit" data-single-click>Sign Up</button>
                                         </div>
 
                                         <div class="mt-2 text-center">

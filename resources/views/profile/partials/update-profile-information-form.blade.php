@@ -89,7 +89,14 @@
         <!-- Tambahan untuk Foto Profil -->
         <div class="mb-3">
             <label for="profile_photo" class="form-label">{{ __('Foto Profil') }}</label>
-            <input id="profile_photo" name="foto" type="file" class="form-control mt-1 block w-full">
+            <div class="d-flex align-items-center">
+                <input id="profile_photo" name="foto" type="file" class="form-control mt-1 block me-3">
+                @if ($user->foto)
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                        HapusFoto
+                    </button>
+                @endif
+            </div>
             @if ($user->foto)
                 <div class="mt-2">
                     <img src="{{ asset('storage/' . $user->foto) }}" alt="Profile Photo" class="avatar rounded img-thumbnail" width="100">
@@ -110,8 +117,29 @@
                     class="badge bg-success-subtle text-success font-size-12"
                 >{{ __('Tersimpan') }}</p>
             @endif
-            <button type="submit" class="btn btn-primary w-md">{{ __('Simpan') }}</button>
+            <button type="submit" class="btn btn-primary w-md" data-single-click>{{ __('Simpan') }}</button>
         </div>
     </form>
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Konfirmasi Hapus Foto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin menghapus foto profil ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <form action="{{ route('profile.deletePhoto') }}" method="POST" id="deletePhotoForm">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" data-single-click>Hapus</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 

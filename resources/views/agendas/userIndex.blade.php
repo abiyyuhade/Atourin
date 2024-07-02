@@ -59,7 +59,7 @@
                             @endif
                         </div>
                         <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-subtle-danger waves-effect waves-light p-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            <button type="button" class="btn btn-subtle-danger waves-effect waves-light p-3" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $agenda->id }}">
                                 <i class="fas fa-trash fa-lg"></i>
                             </button>
                             <a href="{{ route('agendas.edit', $agenda->id) }}">
@@ -72,15 +72,21 @@
                     <div class="card-body">
                         <!-- Title and Location Section -->
                         <div class="mb-4">
-                            <h5 class=" text-primary">{{ $agenda->judul }}</h5>
-                            <p class="card-text">
-                                <i class="fas fa-map-marker-alt me-2 text-danger"></i>
-                                <span class="fw-bold me-3">{{ $agenda->lokasi_berangkat }}</span>
-                                <i class="fas fa-clock me-2 text-info"></i>
-                                <span class="fw-bold me-3">{{ $agenda->durasi }}</span>
-                                <i class="fas fa-money-bill-wave me-2 text-success"></i>
-                                <span class="fw-bold">{{ $agenda->total_biaya }}</span>
-                            </p>
+                            <h5 class="text-primary">{{ $agenda->judul }}</h5>
+                            <div class="card-text d-flex flex-wrap gap-1">
+                                <div class="me-3">
+                                    <i class="fas fa-map-marker-alt me-1 text-danger"></i>
+                                    <span class="fw-bold">{{ $agenda->lokasi_berangkat }}</span>
+                                </div>
+                                <div class="me-3">
+                                    <i class="fas fa-clock me-1 text-info"></i>
+                                    <span class="fw-bold">{{ $agenda->durasi }}</span>
+                                </div>
+                                <div class="">
+                                    <i class="fas fa-money-bill-wave me-1 text-success"></i>
+                                    <span class="fw-bold">{{ $agenda->total_biaya }}</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Destination Section -->
@@ -106,7 +112,7 @@
                     </div>         
                 </div>
 
-                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal fade" id="deleteModal-{{ $agenda->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
@@ -121,7 +127,7 @@
                             <form class="" action="{{ route('agendas.destroy', ['agenda' => $agenda->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger waves-effect waves-light">Hapus</button>
+                                <button type="submit" class="btn btn-danger waves-effect waves-light" data-single-click>Hapus</button>
                             </form>
                         </div>
                         </div>
