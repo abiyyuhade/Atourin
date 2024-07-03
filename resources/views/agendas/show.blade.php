@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>{{ $agenda->judul }}</h1>
-    <p>Lokasi Berangkat: {{ $agenda->lokasi_berangkat }}</p>
-    <p>Mulai: {{ $agenda->mulai }}</p>
-    <p>Selesai: {{ $agenda->selesai }}</p>
-    <a href="{{ route('agendas.edit', $agenda) }}">Edit</a>
-    <form action="{{ route('agendas.destroy', $agenda) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit">Delete</button>
-    </form>
+    <div class="container">
+        <h1>Agenda Detail</h1>
+        <p><strong>Title:</strong> {{ $agenda->judul }}</p>
+        <p><strong>Departure Location:</strong> {{ $agenda->lokasi_berangkat }}</p>
+        <p><strong>Start Date:</strong> {{ $agenda->mulai }}</p>
+        <p><strong>End Date:</strong> {{ $agenda->selesai }}</p>
+        <a href="{{ route('agendas.index') }}" class="btn btn-primary">Back to Agendas</a>
+    </div>
 @endsection

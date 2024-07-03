@@ -21,6 +21,8 @@ return new class extends Migration
             $table->enum('jk', ['laki', 'perempuan'])->nullable();
             $table->date('tgl_lahir')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->string('foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -20,6 +20,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'tgl_lahir',
+        'alamat',
+        'jk',
+        'no_telp',
+        'foto',
     ];
 
     /**
@@ -44,8 +49,21 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function agendas()
-    {
+    public function agendas(){
         return $this->hasMany(Agenda::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
+    
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 }
